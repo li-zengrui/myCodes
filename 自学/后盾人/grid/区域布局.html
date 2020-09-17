@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      * {
+        padding: 0;
+        margin: 0;
+      }
+      body {
+        width: 100vw;
+        height: 100vh;
+        display: grid;
+        grid-template-rows: 70px 1fr 70px;
+        grid-template-columns: 60px 1fr;
+        grid-template-areas:
+          "logo header"
+          "nav main"
+          "footer footer";
+        /* 要是不需要合并，命名用". ."占位 */
+      }
+      header,
+      main,
+      nav,
+      footer {
+        background-color: purple;
+        border: red solid;
+      }
+      header {
+        grid-area: header-start/logo-start/header-end/header-end;
+      }
+      nav {
+        grid-area: nav;
+      }
+      main {
+        grid-area: main;
+      }
+      footer {
+        grid-area: footer;
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+      }
+      footer div {
+        background-color: royalblue;
+        border: salmon solid;
+      }
+    </style>
+  </head>
+  <body>
+    <header></header>
+    <nav></nav>
+    <main></main>
+    <footer>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+    </footer>
+  </body>
+</html>

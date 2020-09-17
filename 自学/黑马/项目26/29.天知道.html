@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      * {
+        padding: 0;
+        margin: 0;
+        list-style: none;
+      }
+      a {
+        text-decoration: none;
+      }
+      body {
+        width: 100vw;
+        height: 100vh;
+      }
+      #app {
+        height: 70%;
+        width: 100%;
+        display: grid;
+        grid-template: 2fr 2fr 6fr/ 1fr;
+      }
+      h1 {
+        text-align: center;
+        color: blue;
+        margin-top: 6vh;
+      }
+      .inp {
+        width: 40%;
+        margin: 5vh auto;
+      }
+      #msg {
+        width: 30vw;
+      }
+      #btn {
+        width: 6vw;
+      }
+      .info {
+        width: 80%;
+        margin: 0 auto;
+        display: flex;
+      }
+      .info li {
+        display: grid;
+        grid-template: repeat(4, 1fr) / 1fr;
+        border: 1px solid black;
+        margin: 0 -1px 0 0;
+        flex: 1;
+      }
+      .info li p {
+        text-align: center;
+        margin: 5px 0;
+      }
+      .info li p:first-child {
+        color: blueviolet;
+        font-size: 24px;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="app">
+      <h1>天知道</h1>
+      <div class="inp">
+        <input type="text" id="msg" @keyup.enter="getmsg" v-model="city" />
+        <button id="btn">搜索</button>
+        <div class="tip">
+          <a href="javascript:;" @click="handle('北京')">北京</a>
+          <a href="javascript:;" @click="handle('上海')">上海</a>
+          <a href="javascript:;" @click="handle('广州')">广州</a>
+          <a href="javascript:;" @click="handle('深圳')">深圳</a>
+        </div>
+      </div>
+      <ul class="info">
+        <li :key="id" v-for="(item,id) in weather">
+          <p>{{item.date}}</p>
+          <p>{{item.low}}~{{item.high}}</p>
+          <p>{{item.fengxiang}}</p>
+          <p>{{item.type}}</p>
+        </li>
+      </ul>
+    </div>
+
+    <script src="../axios.js"></script>
+    <script src="../vue.js"></script>
+    <script>
+      var vm = new Vue({
+        el: "#app",
+        data: {
+          city: "",
+          weather: [],
+        },
+        methods: {
+          getmsg: function () {
+            axios
+              .get("http://wthrcdn.etouch.cn/weather_mini?city=" + this.city)
+              .then(
+                (response) => {
+                  this.weather = response.data.data.forecast;
+                },
+                (err) => {
+                  console.log("error");
+                }
+              );
+          },
+          handle: function (city) {
+            this.city = city;
+            this.getmsg();
+          },
+        },
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,14 @@
+font-weight: 100~900,400对应normal,700对应bold
+font-size: 标准为14px/1em/100%
+line-height：一般使用em
+color:rgba()
+font-style:倾斜italic
+font-variant:small-caps  小型大写字母
+text-transform:大写uppercase 小写lowercase 首字母大写capitalize
+text-decoration:下划线underline 上划线overline 删除线line-through
+text-shadow:rgba() 1px 1px 模糊度1px
+white-space:pre/pre-line/nowrap
+text-overflow:ellipsis 溢出时显示...
+text-indent:缩进2em
+letter-spacing:字符间距
+word-spacing:单词间距

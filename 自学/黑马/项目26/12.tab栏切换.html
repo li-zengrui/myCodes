@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+      }
+      body {
+        width: 100vw;
+        height: 100vh;
+        background-color: darkcyan;
+      }
+      ul {
+        display: flex;
+        border: 0.1vw solid red;
+        width: 40vw;
+      }
+      ul li {
+        width: 100%;
+        flex: 1;
+        text-align: center;
+      }
+      .img {
+        height: 50vh;
+        width: 40.2vw;
+        position: relative;
+        overflow: hidden;
+      }
+      .img div {
+        width: 100%;
+        height: 100%;
+        display: none;
+      }
+      img {
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        left: 0;
+        top: 0;
+      }
+      .active {
+        background-color: darkblue;
+      }
+      .img div.current {
+        display: block;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="app">
+      <ul>
+        <li
+          @click="change(index)"
+          :class='currentIndex==index?"active":""'
+          :key="item.id"
+          v-for="(item,index) in list"
+        >
+          {{item.name}}
+        </li>
+      </ul>
+      <div class="img">
+        <div
+          :class='currentIndex==index?"current":""'
+          :key="item.id"
+          v-for="(item,index) in list"
+        >
+          <img :src="item.src" />
+        </div>
+      </div>
+    </div>
+    <script src="../vue.js"></script>
+    <script>
+      var vm = new Vue({
+        el: "#app",
+        data: {
+          currentIndex: 0,
+          list: [
+            {
+              id: 1,
+              name: "app1",
+              src: "../image/1.jpg",
+            },
+            { id: 2, name: "app2", src: "../image/2.jpg" },
+            { id: 3, name: "app3", src: "../image/3.jpg" },
+          ],
+        },
+        methods: {
+          change: function (index) {
+            this.currentIndex = index;
+          },
+        },
+      });
+    </script>
+  </body>
+</html>

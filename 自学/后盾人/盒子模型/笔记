@@ -1,0 +1,11 @@
+margin:0px auto;  左右居中
+外边距合并，取大的
+box-sizing:border-box;
+border-style:边框样式
+outline:solid 3px red;   轮廓线不占空间！
+cursor:pointer 小手
+visibility:hidden;  保留空间位，跟opacity:0一样，display:none不保留
+display:inline-block,使行内元素可设置宽高
+overflow:scroll/hidden;
+width:fit-content;  内容自适应
+width:fill-available;  内容自动撑满

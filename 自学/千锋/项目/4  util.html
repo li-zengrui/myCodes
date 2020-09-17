@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <button onclick="sendMsg()">发送请求</button>
+    <script src="./util.js"></script>
+    <script>
+      function sendMsg() {
+        // util.ajax({
+        //   method: "get",
+        //   url: "./3  data.php",
+        //   query: { id: 3, title: "wangwu" },
+        //   callback: function (resp) {
+        //     console.log(resp);
+        //   },
+        //   isJson: true,
+        // });
+        util.ajax({
+          method: "post",
+          url: "./3  data2.php",
+          query: { id: 3, title: "wangwu" },
+          callback: function (resp) {
+            console.log(resp);
+          },
+          isJson: true,
+        });
+      }
+    </script>
+  </body>
+</html>

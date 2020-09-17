@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      function fn(a) {
+        console.log("phpfn", a);
+      }
+      //   jsonp只能用于get请求
+    </script>
+    <!-- 放在script标签中，当作js语句 -->
+    <script src="http://localhost/project/8%20%20data.js"></script>
+    <script src="http://localhost/project/8%20%20data.txt"></script>
+    <!-- ?cb=fn，将fn函数传给php当作变量$cb，改变函数名则不需要改后端 -->
+    <script src="http://localhost/project/8%20%20data.php?cb=fn"></script>
+  </body>
+</html>

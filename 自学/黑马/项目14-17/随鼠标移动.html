@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        div{
+            height: 30px;
+            width: 30px;
+            position: absolute;
+            background-color: bisque;
+        }
+    </style>
+</head>
+<body>
+    <div></div>
+    <script>
+        var div = document.querySelector('div');
+        document.addEventListener('mousemove',function(e){
+            var x = e.pageX;
+            var y = e.pageY;
+            div.style.top = y - 15 + 'px';
+            div.style.left = x - 15 + 'px';
+            
+        })
+    </script>
+</body>
+</html>

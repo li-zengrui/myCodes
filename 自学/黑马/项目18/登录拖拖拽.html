@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .header {
+        height: 40px;
+        width: 100%;
+        background-color: bisque;
+        text-align: center;
+      }
+      .login {
+        position: relative;
+        display: none;
+        background-color: burlywood;
+        width: 70%;
+        margin: 20px auto;
+      }
+      .title {
+        background-color: cadetblue;
+        text-align: center;
+        line-height: 40px;
+      }
+      .title span {
+        float: right;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="header"><a href="javascript:;">弹出登录框</a></div>
+    <div class="login">
+      <div class="title">
+        登录会员
+        <span><a href="javascript:void(0);" class="close"> 关闭</a></span>
+      </div>
+      <div>
+        <div><label>用户名：</label><input type="text" /></div>
+        <div><label>登陆密码：</label><input type="password" /></div>
+      </div>
+      <div class="btn">
+        <button>登录会员</button>
+      </div>
+    </div>
+
+    <script>
+      var header = document.querySelector(".header");
+      var login = document.querySelector(".login");
+      var close = document.querySelector(".close");
+      var btn = document.querySelector(".btn");
+      var title = document.querySelector(".title");
+      var start = document.querySelector(".select");
+      header.addEventListener("click", function () {
+        login.style.display = "block";
+      });
+      close.addEventListener("click", function () {
+        login.style.display = "none";
+      });
+      title.addEventListener("mousedown", function (e) {
+        var x = e.pageX - login.offsetLeft;
+        var y = e.pageY - login.offsetTop;
+        document.addEventListener("mousemove", fn);
+        function fn(e) {
+          login.style.left = e.pageX - x - 190 + "px";
+          login.style.top = e.pageY - y - 60 + "px";
+        }
+        document.addEventListener("mouseup", function () {
+          document.removeEventListener("mousemove", fn);
+        });
+      });
+    </script>
+  </body>
+</html>

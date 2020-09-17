@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style></style>
+  </head>
+  <body>
+    <script>
+      var car = (function () {
+        var start = 20;
+        var total = 0;
+        return {
+          price: function (n) {
+            if (n <= 3) {
+              total = start;
+            } else {
+              total = start + (n - 3) * 5;
+            }
+            return total;
+          },
+          yd: function (flag) {
+            return flag ? total + 10 : total;
+          },
+        };
+      })();
+    </script>
+  </body>
+</html>

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      * {
+        padding: 0;
+        margin: 0;
+      }
+      body {
+        height: 100vh;
+        width: 100vw;
+        background-color: darkgrey;
+        display: grid;
+        grid-template-columns: repeat(5, 1fr);
+      }
+      div {
+        height: 70px;
+        width: 70px;
+        border-radius: 50%;
+        background-color: dodgerblue;
+        justify-self: center;
+        grid-column: 3/4;
+        animation-name: ball;
+        animation-duration: 3s;
+        animation-delay: 1s;
+        animation-fill-mode: forwards;
+      }
+      @keyframes ball {
+        from {
+          transform: translateY(0);
+          animation-timing-function: ease-in;
+        }
+        45% {
+          transform: translateY(20vh);
+          animation-timing-function: ease-in;
+        }
+        68% {
+          transform: translateY(40vh);
+          animation-timing-function: ease-in;
+        }
+        82% {
+          transform: translateY(67vh);
+          animation-timing-function: ease-in;
+        }
+        94% {
+          transform: translateY(80vh);
+          animation-timing-function: ease-in;
+        }
+        30%,
+        55%,
+        75%,
+        90%,
+        to {
+          transform: translateY(88vh);
+          animation-timing-function: ease-out;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div></div>
+  </body>
+</html>

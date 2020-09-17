@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+  </head>
+
+  <body>
+    <div id="app">
+      <router-link to="/local1">user1</router-link>
+      <router-link :to="{name:'mingming',params:{id:222}}">user2</router-link>
+      <router-link to="/local3">user3</router-link>
+      <hr />
+      <router-view></router-view>
+      <hr />
+
+      <router-link to="/chuancan1">props</router-link>
+      <router-link to="/chuancan2">props</router-link>
+      <router-link to="/chuancan3">props</router-link>
+      <hr />
+
+      <router-link to="/chuan1">props</router-link>
+      <router-link to="/chuan2">props</router-link>
+      <router-link to="/chuan3">props</router-link>
+      <hr />
+
+      <router-link to="/can1">props</router-link>
+      <router-link to="/can2">props</router-link>
+      <router-link to="/can3">props</router-link>
+    </div>
+    <script src="../vue.js"></script>
+    <script src="../vue-router.js"></script>
+    <script>
+      const zujian = {
+        template: "<h2>组件,id:{{$route.params.id}}</h2>",
+      };
+
+      const canshu = {
+        props: ["id"],
+        template: "<h2>组件，id:{{id}}</h2>",
+      };
+
+      const canshu2 = {
+        props: ["id", "name", "age"],
+        template: "<h2>组件，id:{{id}}，姓名:{{name}}，年龄:{{age}}</h2>",
+      };
+
+      const canshu3 = {
+        props: ["id", "name", "age"],
+        template: "<h2>组件，id:{{id}}，姓名:{{name}}，年龄:{{age}}</h2>",
+      };
+
+      const rules = new VueRouter({
+        routes: [
+          //   { path: "/local", component: zujian },
+          //   { path: "/local", component: zujian },
+          //   { path: "/local", component: zujian },
+
+          //   :表示动态
+          //   通过$route.params.  获取
+          { path: "/local:id", component: zujian },
+
+          // 设置props为true，在组件中接收参数id
+          {
+            name: "mingming",
+            path: "/chuancan:id",
+            component: canshu,
+            props: true,
+          },
+
+          // 设置props为对象，id则失效，在组件中接收对象里参数
+          {
+            path: "/chuan:id",
+            component: canshu2,
+            props: { name: "lisi", age: 18 },
+          },
+
+          // 设置props为函数，在组件中接收所有参数
+          {
+            path: "/can:id",
+            component: canshu3,
+            props: (route) => ({ name: "lisi", age: 18, id: route.params.id }),
+          },
+        ],
+      });
+      var vm = new Vue({
+        el: "#app",
+        data: {},
+        methods: {},
+        router: rules,
+      });
+    </script>
+  </body>
+</html>

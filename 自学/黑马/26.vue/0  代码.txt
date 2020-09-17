@@ -1,0 +1,50 @@
+el  
+data  directives  components
+methods  computed(return)  watch  filters(return)
+
+{{ }}
+v-text = 
+v-html = 
+v-pre
+[v-cloak] { display:none; }
+v-once
+v-model =
+
+v-on:click = ' 函数 '
+@click = ' 函数(参数,$event) '
+@click.stop
+@click.prevent
+@keyup.enter
+@keyup.delete
+Vue.config.keyCodes.aaa=64
+v-bind:href =
+:href =
+:class="{active:isActive}"
+:class="[active]"
+:style="{border:borderstyle,color:colorstyle}"
+:style="[basestyle,overstyle]"
+
+v-if =
+v-else-if =
+v-else =
+v-show = boolean
+:key =
+v-for ='( item,index ) in list'
+v-for ='( value,key,index ) in Object'
+
+input v-model.number
+input v-model.trim
+input v-model.lazy
+
+Vue.directive    inserted bind    binding.value
+ | 
+Vue.fliter
+splice() fliter() slice()
+Vue.set(name,index,value)
+vm.$set(name,key,value)
+
+Vue.component    data(function return)  template
+props
+this.$emit()
+slot  name
+slot-scope

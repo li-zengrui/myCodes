@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="app">
+      <ul>
+        <!-- 遍历数组  值+索引 -->
+        <li v-for="item in list">{{item}}</li>
+        <li v-for="(item,index) in list">{{item+'---'+index}}</li>
+
+        <!-- 遍历对象  值+键+索引 -->
+        <li v-for="(v,k,i) in obj">{{v+'---'+k+'---'+i}}</li>
+        <hr />
+        <!-- 分支+循环结构 -->
+        <li v-if="v==111" v-for="(v,k,i) in obj">{{v+'---'+k+'---'+i}}</li>
+        <hr />
+        <li :key="index" v-for="(item,index) in fruits">
+          {{item.ename+'---'+item.cname}}
+        </li>
+      </ul>
+    </div>
+    <script src="../vue.js"></script>
+    <script>
+      var vm = new Vue({
+        el: "#app",
+        data: {
+          list: ["a", "b", "c"],
+          obj: {
+            a: "111",
+            b: "222",
+            c: "333",
+          },
+          fruits: [
+            { ename: "apple", cname: "苹果" },
+            { ename: "orange", cname: "橙子" },
+          ],
+        },
+        methods: {},
+      });
+    </script>
+  </body>
+</html>

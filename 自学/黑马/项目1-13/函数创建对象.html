@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        function People(uname,utype,ublood){
+            this.name = uname;
+            this.type = utype;
+            this.blood = ublood;
+            this.attack = function() {
+                console.log('近战');
+            }
+        }
+        var houYi = new People('后裔','力量型','500');
+        console.log(houYi.name);
+        houYi.attack();
+        
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

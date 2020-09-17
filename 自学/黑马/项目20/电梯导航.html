@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      * {
+        padding: 0;
+        margin: 0;
+        list-style: none;
+      }
+      body {
+        width: 100vw;
+        height: 100vh;
+      }
+      nav {
+        width: 10vw;
+        position: fixed;
+        left: 0;
+        top: 25vh;
+        display: none;
+      }
+      li {
+        border: 1px #999 solid;
+        text-align: center;
+        height: 40px;
+        color: pink;
+      }
+      main {
+        width: 90vw;
+      }
+      section {
+        height: 80vh;
+      }
+      div {
+        width: 100%;
+        height: 40vh;
+        margin-left: 10vw;
+        margin-top: 5vh;
+        background-color: aquamarine;
+      }
+      .current {
+        background-color: red;
+      }
+    </style>
+    <script src="../jQuery.min.js"></script>
+  </head>
+  <body>
+    <nav>
+      <ul>
+        <li>111</li>
+        <li>222</li>
+        <li>333</li>
+      </ul>
+    </nav>
+    <main>
+      <section></section>
+      <div class="f"></div>
+      <div class="s"></div>
+      <div class="t"></div>
+      <section></section>
+    </main>
+    <script>
+      $(function () {
+        var flag = true;
+        var fscroll = $(".f").offset().top - 1;
+        function scroll() {
+          if ($(document).scrollTop() >= fscroll) {
+            $("nav").fadeIn();
+          } else {
+            $("nav").fadeOut();
+          }
+        }
+
+        $(document).scroll(function () {
+          scroll();
+          if (flag) {
+            $("div").each(function (i, ele) {
+              if ($(document).scrollTop() >= $(ele).offset().top - 1) {
+                $("li")
+                  .eq(i)
+                  .addClass("current")
+                  .siblings()
+                  .removeClass("current");
+              }
+            });
+          }
+        });
+
+        $("li").click(function () {
+          flag = false;
+          var index = $(this).index();
+          var divtop = $("div").eq(index).offset().top;
+          $("html")
+            .stop()
+            .animate(
+              {
+                scrollTop: divtop,
+              },
+              function () {
+                flag = true;
+              }
+            );
+          $(this).addClass("current").siblings().removeClass("current");
+        });
+      });
+    </script>
+  </body>
+</html>

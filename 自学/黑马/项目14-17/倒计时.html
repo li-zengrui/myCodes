@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        div{
+            float: left;
+            width: 100px;
+            height: 100px;
+            background-color: black;
+            margin: 20px;
+            color: white;
+            line-height: 100px;
+            font-size: 32px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+
+    <script>
+        var divs = document.querySelectorAll('div');
+        var willTime = +new Date('2022-02-22 00:00:00');
+        fn();
+        setInterval(fn,1000);
+        function fn(){
+            var nowTime = +new Date();            
+            var times = (willTime - nowTime)/1000;  
+            var d = parseInt(times/60/60/24);          
+            var h = parseInt(times/60/60%24);
+            var m = parseInt(times/60%60);
+            var s = parseInt(times%60);
+            divs[0].innerHTML = d;
+            divs[1].innerHTML = h;
+            divs[2].innerHTML = m;
+            divs[3].innerHTML = s;         
+        }
+    </script>
+</body>
+</html>

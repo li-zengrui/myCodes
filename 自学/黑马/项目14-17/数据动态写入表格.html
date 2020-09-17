@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            border: 0;
+        }
+        table{
+            text-align: center;
+            border-collapse: collapse;
+        }
+        thead{
+            background-color: #666;
+        }
+        tbody{
+            background-color: #999;
+        }
+        th{
+            font-size: 26px;
+            padding: 10px 25px;
+            border: black solid 1px;
+        }
+        td{
+            border: black solid 1px;
+            font-size: 20px;
+        }
+    </style>
+</head>
+<body>
+    <table>
+        <thead>
+            <tr>
+                <th>姓名</th>
+                <th>科目</th>
+                <th>成绩</th>
+                <th>操作</th>
+            </tr>
+        </thead>
+        <tbody>
+            
+        </tbody>
+    </table>
+    <script>
+        var data = [
+        {
+        name:'魏璎珞',
+        subject:'Js',
+        score:'100'
+        },
+        {
+        name:'傅亨',
+        subject:'Js',
+        score:'99'
+        },
+        {
+        name:'弘历',
+        subject:'Js',
+        score:'98'
+        },
+        {
+        name:'明玉',
+        subject:'Js',
+        score:'97'
+        }]
+
+        var tbody = document.querySelector('tbody');
+        for(var i = 0 ; i < data.length ; i++){
+            var tr = document.createElement('tr');
+            tbody.appendChild(tr);
+            for(var k in data[i]){
+                var td = document.createElement('td');
+                td.innerHTML = data[i][k];
+                tr.appendChild(td);
+            }
+            var as = document.createElement('td');
+            as.innerHTML = '<a href="javascript:;">删除</a>'
+            tr.appendChild(as);
+        }
+
+        var as = document.querySelectorAll('a');
+        for(var i = 0 ; i < as.length ; i++){
+            as[i].onclick = function(){
+                tbody.removeChild(this.parentNode.parentNode);             
+            }
+        }
+    </script>
+</body>
+</html>

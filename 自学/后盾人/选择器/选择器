@@ -1,0 +1,20 @@
+后代选择器  空格
+子代选择器  >
+兄弟选择器  （后边的兄弟：~）  （后边紧挨的兄弟：+）
+属性选择器  [title(开头：^)(结束：$)(任何位置：*)
+            (任何位置+单独的单词：~)(开头/开头接 - ：|)(="com")]
+超链接伪类选择器（爱恨）:link :visited :hover :alive
+目标伪类选择器 ::target
+根伪类选择器 ::root  <html>
+空伪类选择器 ::empty
+结构伪类选择器（既要满足E也要满足n）
+排除选择器E:not(:first­-child)
+E:first­-child
+E:last­-child
+E:nth­-child(n)
+E:nth­-last-­child(n)
+E:first-­of-type
+E:last­-of-type
+E:only-child
+E:only-­of-type
+n为2n/odd代表奇数，为2n-1/even代表偶数

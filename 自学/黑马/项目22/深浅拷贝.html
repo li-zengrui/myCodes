@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      // 浅拷贝，内层是拷贝了地址，改变了之后原先的也会被影响
+      var obj1 = {
+        id: 1,
+        name: "andy",
+        msg: {
+          age: 18,
+        },
+      };
+      var o1 = {};
+      for (var k in obj1) {
+        o1[k] = obj1[k];
+      }
+      console.log(o1);
+      o1.id = 11;
+      o1.msg.age = 188;
+      console.log(o1);
+      console.log(obj1);
+
+      console.log("------------------------------------");
+
+      //   深拷贝
+      var obj2 = {
+        id: 1,
+        name: "andy",
+        msg: {
+          age: 18,
+        },
+        color: ["red", "yellow"],
+      };
+      var o2 = {};
+      function deepCopy(newobj, oldobj) {
+        for (var k in oldobj) {
+          var item = oldobj[k];
+          if (item instanceof Array) {
+            newobj[k] = [];
+            deepCopy(newobj[k], item);
+          } else if (item instanceof Object) {
+            newobj[k] = {};
+            deepCopy(newobj[k], item);
+          } else {
+            newobj[k] = item;
+          }
+        }
+      }
+      deepCopy(o2, obj2);
+      console.log(o2);
+    </script>
+  </body>
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <button>按钮</button>
+    <script>
+      var that;
+      class Star {
+        constructor(uname, uage) {
+          // 将构造器指向实例对象的this，传给that
+          that = this;
+
+          //   这里面都要用this
+          this.name = uname;
+          this.age = uage;
+          this.btn = document.querySelector("button");
+          //   sing没加()，点击了才调用
+          this.btn.onclick = this.sing;
+          //   dance加了()，实例化时直接调用
+          this.dance();
+        }
+        sing() {
+          // 这里的this是指向btn，所以要用that
+          console.log(that.name);
+        }
+        dance() {
+          // 这里的this指向实例对象
+          console.log(this.age);
+        }
+      }
+
+      var lzr = new Star("李增锐", 20);
+    </script>
+  </body>
+</html>

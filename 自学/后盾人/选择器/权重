@@ -1,0 +1,10 @@
+权重：!importer > 行内 > id >class/类属性值 > 标签/伪元素 > * > 继承
+
+ less文件自动生成css文件
+ body{
+     main{
+         h2{
+             color:red;
+         }
+     }
+ }

@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      * {
+        padding: 0;
+        border: 0;
+        margin: 0;
+      }
+      #btn6 {
+        position: relative;
+      }
+      #btn8 {
+        position: relative;
+      }
+      div {
+        position: relative;
+        height: 200px;
+        width: 200px;
+        background-color: aquamarine;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="one">匀速</div>
+    <div id="two">变速</div>
+    <button id="btn6">点击600</button>
+    <button id="btn8">点击800</button>
+  </body>
+  <script>
+    var getDiv = document.querySelector("#one");
+    var getdiv = document.querySelector("#two");
+    var clickButton = document.querySelector("#btn6");
+    var clickbutton = document.querySelector("#btn8");
+
+    // 匀速函数
+    function animate(obj, target, callback) {
+      clearInterval(obj.timer);
+      obj.timer = setInterval(function () {
+        if (obj.offsetLeft == target) {
+          clearInterval(obj.timer);
+          if (callback) {
+            callback();
+          }
+        } else if (obj.offsetLeft < target) {
+          obj.style.left = obj.offsetLeft + 10 + "px";
+        } else {
+          obj.style.left = obj.offsetLeft - 10 + "px";
+        }
+      }, 30);
+    }
+    // 变速函数
+    function animate2(obj, target, callback) {
+      clearInterval(obj.timer);
+      getdiv.style.backgroundColor = "aquamarine";
+      obj.timer = setInterval(function () {
+        // 步长！！！
+        var step = (target - obj.offsetLeft) / 10;
+        step = step > 0 ? Math.ceil(step) : Math.floor(step);
+        if (obj.offsetLeft == target) {
+          clearInterval(obj.timer);
+          // 回调函数放在定时器结束之后！
+          if (callback) {
+            callback();
+          }
+        } else {
+          obj.style.left = obj.offsetLeft + step + "px";
+        }
+      }, 50);
+    }
+
+    // 调用匀速
+    clickButton.addEventListener("click", function () {
+      animate(getDiv, 600);
+      animate2(getdiv, 600, function () {
+        getdiv.style.backgroundColor = "pink";
+      });
+    });
+    // 调用变速
+    clickbutton.addEventListener("click", function () {
+      animate(getDiv, 800);
+      animate2(getdiv, 800, function () {
+        getdiv.style.backgroundColor = "pink";
+      });
+    });
+  </script>
+</html>

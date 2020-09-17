@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      * {
+        padding: 0;
+        margin: 0;
+      }
+      body {
+        width: 100vx;
+        height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      div {
+        position: relative;
+        height: 200px;
+        width: 360px;
+        background-color: pink;
+        color: white;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 2em;
+        transform-style: preserve-3d;
+        transform: perspective(900px) rotateX(30deg) rotateY(30deg);
+      }
+
+      div::before,
+      div::after {
+        width: 50%;
+        height: 100%;
+        background-color: red;
+        position: absolute;
+        display: flex;
+        align-items: center;
+
+        font-size: 1.5em;
+        transition: 2s;
+      }
+
+      div::before {
+        content: "新年";
+        left: 0;
+        transform-origin: left;
+        justify-content: flex-end;
+      }
+      div::after {
+        content: "快乐";
+        right: 0;
+        transform-origin: right;
+        justify-content: flex-start;
+      }
+      div:hover::before {
+        background-color: rosybrown;
+        transform: rotateY(-180deg);
+      }
+      div:hover::after {
+        background-color: rosybrown;
+        transform: rotateY(180deg);
+      }
+    </style>
+  </head>
+  <body>
+    <div>不愧是我</div>
+  </body>
+</html>

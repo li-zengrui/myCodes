@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      * {
+        padding: 0;
+        margin: 0;
+      }
+      body {
+        height: 100vh;
+        width: 100vw;
+        background-color: darkgrey;
+        display: grid;
+        grid-template: 1fr/1fr;
+      }
+      main {
+        width: 300px;
+        height: 200px;
+        justify-self: center;
+        align-self: center;
+        overflow: hidden;
+        position: relative;
+      }
+      main:hover .ul1,
+      main:hover .ul2::after {
+        animation-play-state: paused;
+      }
+      .ul1 {
+        width: 900px;
+        height: 200px;
+        background-color: darkkhaki;
+        justify-self: center;
+        align-self: center;
+        list-style: none;
+        display: grid;
+        grid-template: 1fr / repeat(3, 1fr);
+        animation-name: hd;
+        animation-duration: 3s;
+        animation-iteration-count: infinite;
+        animation-timing-function: steps(3, end);
+      }
+      .ul1 li {
+        width: 300px;
+        height: 200px;
+      }
+      img {
+        width: 100%;
+        height: 100%;
+      }
+      @keyframes hd {
+        to {
+          transform: translateX(-900px);
+        }
+      }
+      @keyframes hdred {
+        to {
+          transform: translateX(120px);
+        }
+      }
+      .ul2 {
+        list-style: none;
+        width: 90px;
+        height: 30px;
+        position: absolute;
+        left: 50%;
+        top: 90%;
+        transform: translate(-50%, -50%);
+        display: grid;
+        grid-template: 1fr / repeat(3, 1fr);
+        grid-gap: 30px;
+      }
+      .ul2 div {
+        background-color: darkgrey;
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+        position: absolute;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: white;
+      }
+      .ul2::after {
+        content: "";
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+        position: absolute;
+        background-color: red;
+        opacity: 0.5;
+        animation-name: hdred;
+        animation-duration: 3s;
+        animation-iteration-count: infinite;
+        animation-timing-function: steps(3, end);
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <ul class="ul1">
+        <li><img src="../img/1.jpg" alt="" /></li>
+        <li><img src="../img/2.jpg" alt="" /></li>
+        <li><img src="../img/3.jpg" alt="" /></li>
+      </ul>
+      <ul class="ul2">
+        <li><div>1</div></li>
+        <li><div>2</div></li>
+        <li><div>3</div></li>
+      </ul>
+    </main>
+  </body>
+</html>

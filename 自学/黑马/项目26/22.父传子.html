@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="app">
+      <parent></parent>
+    </div>
+    <template id="tem1">
+      <div>
+        <h3>{{p1}}</h3>
+        <child :c3="p1"></child>
+      </div>
+    </template>
+    <script src="../vue.js"></script>
+    <script>
+      var vm = new Vue({
+        el: "#app",
+        components: {
+          parent: {
+            data: function () {
+              return {
+                p1: "111",
+              };
+            },
+            template: "#tem1",
+            components: {
+              child: {
+                props: ["c3"],
+                data: function () {
+                  return {
+                    c2: "222",
+                  };
+                },
+                template: "<em>{{c2+'---'+c3}}</em>",
+              },
+            },
+          },
+        },
+      });
+    </script>
+  </body>
+</html>

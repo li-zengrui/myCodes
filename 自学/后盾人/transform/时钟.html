@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      * {
+        padding: 0;
+        margin: 0;
+      }
+      body {
+        width: 100vx;
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      .main {
+        width: 200px;
+        height: 200px;
+        border-radius: 50%;
+        background-color: tomato;
+        position: relative;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      .main::before {
+        content: "";
+        width: 170px;
+        height: 170px;
+        border-radius: 50%;
+        background-color: white;
+        position: absolute;
+      }
+      .line {
+        width: 160px;
+        height: 160px;
+        border-radius: 50%;
+        position: absolute;
+      }
+      .line div {
+        width: 5px;
+        height: 100%;
+        background-color: wheat;
+        position: absolute;
+        left: 50%;
+      }
+      .line div:nth-child(1) {
+        transform: translateX(-50%) rotate(0deg);
+      }
+      .line div:nth-child(2) {
+        transform: translateX(-50%) rotate(30deg);
+      }
+      .line div:nth-child(3) {
+        transform: translateX(-50%) rotate(60deg);
+      }
+      .line div:nth-child(4) {
+        transform: translateX(-50%) rotate(90deg);
+      }
+      .line div:nth-child(5) {
+        transform: translateX(-50%) rotate(120deg);
+      }
+      .line div:nth-child(6) {
+        transform: translateX(-50%) rotate(150deg);
+      }
+      .line::before {
+        content: "";
+        width: 150px;
+        height: 150px;
+        border-radius: 50%;
+        background-color: white;
+        z-index: 2;
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+      }
+      .line::after {
+        content: "";
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+        background-color: wheat;
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        z-index: 2;
+      }
+      .hour {
+        position: absolute;
+        width: 4px;
+        height: 40px;
+        background-color: cadetblue;
+        z-index: 2;
+        transition: 18s;
+        transform-origin: bottom;
+        transform: translateY(-50%);
+      }
+      .minute {
+        position: absolute;
+        width: 3px;
+        height: 50px;
+        background-color: cadetblue;
+        z-index: 2;
+        transition: 12s;
+        transform-origin: bottom;
+        transform: translateY(-50%);
+      }
+      .second {
+        position: absolute;
+        width: 2px;
+        height: 60px;
+        background-color: cadetblue;
+        z-index: 2;
+        transition: 6s;
+        transform-origin: bottom;
+        transform: translateY(-50%);
+      }
+      .main:hover .hour {
+        transform: translateY(-50%) rotate(360deg);
+      }
+      .main:hover .minute {
+        transform: translateY(-50%) rotate(360deg);
+      }
+      .main:hover .second {
+        transform: translateY(-50%) rotate(360deg);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="main">
+      <div class="line">
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+      </div>
+      <div class="hour"></div>
+      <div class="minute"></div>
+      <div class="second"></div>
+    </div>
+  </body>
+</html>

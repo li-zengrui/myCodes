@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        table{
+            text-align: center;
+            border-collapse: collapse;
+        }
+        thead{
+            background-color: skyblue;
+        }
+        tbody{
+            background-color: darkgrey;
+        }
+        th{
+            height: 30px;
+            border: gainsboro 1px solid;
+        }
+        td{
+            width: 80px;
+            height: 60px;
+            border: gainsboro 1px solid;
+        }
+    </style>
+</head>
+<body>
+    <table>
+        <thead>
+            <tr>
+                <th>
+                    <input type="checkbox" class="main">
+                </th>
+                <th>商品</th>
+                <th>价钱</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>
+                    <input type="checkbox" class="minor">
+                </td>
+                <td>iPhone8</td>
+                <td>8000</td>
+            </tr>
+            <tr>
+                <td>
+                    <input type="checkbox" class="minor">
+                </td>
+                <td>iPad Pro</td>
+                <td>5000</td>
+            </tr>
+            <tr>
+                <td>
+                    <input type="checkbox" class="minor">
+                </td>
+                <td>iPad Pro</td>
+                <td>2000</td>
+            </tr>
+            <tr>
+                <td>
+                    <input type="checkbox" class="minor">
+                </td>
+                <td>iPad Air</td>
+                <td>2000</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <script>
+        var box = document.querySelector('tbody').querySelectorAll('tr');
+        for(var i = 0; i < box.length; i++){
+            box[i].onmousemove = function(){
+                    this.style.backgroundColor = '#777';
+            }
+            box[i].onmouseleave = function(){
+                    this.style.backgroundColor = '';
+            }
+        }
+
+        var main = document.querySelector('.main');
+        var minor = document.querySelectorAll('.minor');
+        main.onclick = function(){
+            for(var i = 0 ; i < minor.length ; i++){
+                minor[i].checked = main.checked;
+            }
+        }
+         for(var i = 0 ; i < minor.length ; i++){
+             minor[i].onclick = function(){
+                var flag = true;
+                for(var i = 0 ; i < minor.length ; i++){
+                    if(!minor[i].checked){
+                    flag = false;
+                }
+            }
+            main.checked = flag;
+            }
+         }
+            
+        
+    </script>
+</body>
+</html>

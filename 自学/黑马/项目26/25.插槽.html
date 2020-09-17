@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="app">
+      <parent>
+        <div slot="slot1">1</div>
+        <div>2</div>
+        <div>3</div>
+      </parent>
+    </div>
+    <template id="tem">
+      <div>
+        <div>{{msg}}</div>
+        <hr />
+        <!-- 匿名插槽 -->
+        <slot></slot>
+        <hr />
+        <!-- 具名插槽 -->
+        <slot name="slot1"></slot>
+      </div>
+    </template>
+    <script src="../vue.js"></script>
+    <script>
+      var vm = new Vue({
+        el: "#app",
+        components: {
+          parent: {
+            data: function () {
+              return {
+                msg: "111",
+              };
+            },
+            template: "#tem",
+          },
+        },
+      });
+    </script>
+  </body>
+</html>

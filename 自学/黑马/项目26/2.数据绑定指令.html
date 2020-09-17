@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      [v-cloak] {
+        display: none;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="getdiv">
+      <!-- 插值法 -->
+      <div>msg1,{{msg2}},msg2,{{msg1}}</div>
+
+      <!-- v-cloak和插值法 -->
+      <div v-cloak>msg1,{{msg2}},msg2,{{msg1}}</div>
+      <hr />
+      <!-- v-text ： 不能显示样式 -->
+      <div v-text="msg1"></div>
+      <div v-text="msg2"></div>
+      <hr />
+      <!-- v-html ： 能显示样式 -->
+      <div v-html="msg2"></div>
+      <hr />
+      <!-- pre ： 原封不动显示内容 -->
+      <div v-pre>msg1,{{msg2}},msg2,{{msg1}}</div>
+    </div>
+    <script src="../vue.js"></script>
+    <script>
+      var vm = new Vue({
+        el: "#getdiv",
+        data: {
+          msg1: "111",
+          msg2: "<h1>222</h1>",
+        },
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,9 @@
+<link rel='stylesheet' href='' media="screen,print">
+
+逻辑与或非 and , !
+@media not screen{}
+<style media="screen and (min-width:700px),"screen and (orientatioin:landscape)"></style>
+@media only screen{} 浏览器支持才使用语句
+
+可以在总css文件里，多文件导入：  @import url();
+

@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      * {
+        padding: 0;
+        margin: 0;
+      }
+      body {
+        height: 100vh;
+        width: 100vw;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      main {
+        height: 100px;
+        width: 300px;
+        position: relative;
+        left: -10%;
+        top: -10%;
+        transition: 2s;
+        transform-style: preserve-3d;
+        transform: perspective(900px) rotateY(45deg) rotateX(45deg);
+      }
+      .big,
+      .small {
+        position: absolute;
+        height: 100px;
+        background-color: aquamarine;
+        opacity: 0.6;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      .big {
+        width: 300px;
+      }
+      .small {
+        width: 100px;
+      }
+      .small:nth-child(5) {
+        transform-origin: left;
+        transform: rotateY(-90deg);
+      }
+      .small:nth-child(6) {
+        left: 200px;
+        transform-origin: right;
+        transform: rotateY(90deg);
+      }
+      .big:nth-child(2) {
+        transform-origin: top;
+        transform: rotateX(90deg);
+      }
+      .big:nth-child(3) {
+        transform-origin: center center 50px;
+        transform: rotateX(180deg);
+      }
+      .big:nth-child(4) {
+        transform-origin: bottom;
+        transform: rotateX(-90deg);
+      }
+      main:hover {
+        transform: perspective(900px) rotateY(160deg) rotateX(70deg);
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <div class="big">1</div>
+      <div class="big">2</div>
+      <div class="big">3</div>
+      <div class="big">4</div>
+      <div class="small">5</div>
+      <div class="small">6</div>
+    </main>
+  </body>
+</html>

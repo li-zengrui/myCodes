@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      * {
+        padding: 0;
+        margin: 0;
+      }
+      body {
+        height: 100vh;
+        width: 100vw;
+        display: grid;
+        grid-template: 1fr/1fr;
+      }
+      button {
+        width: 140px;
+        height: 80px;
+        background-color: darkgrey;
+        justify-self: center;
+        align-self: center;
+        color: white;
+      }
+      button::after {
+        content: "";
+        height: 3px;
+        width: 3px;
+        display: inline-block;
+        animation-name: hd;
+        animation-iteration-count: infinite;
+        animation-duration: 1.5s;
+      }
+      @keyframes hd {
+        from {
+          box-shadow: none;
+        }
+        30% {
+          box-shadow: 3px 0 0 currentColor;
+        }
+        60% {
+          box-shadow: 3px 0 0 currentColor, 9px 0 0 currentColor;
+        }
+        90% {
+          box-shadow: 3px 0 0 currentColor, 9px 0 0 currentColor,
+            15px 0 0 currentColor;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <button>提交按钮</button>
+  </body>
+</html>

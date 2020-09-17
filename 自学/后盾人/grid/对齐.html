@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      * {
+        padding: 0;
+        margin: 0;
+      }
+      body {
+        height: 100vh;
+        width: 100vw;
+      }
+      main {
+        height: 300px;
+        width: 300px;
+        border: solid red;
+        display: grid;
+        grid-template-rows: repeat(3, 1fr);
+        grid-template-columns: repeat(3, 1fr);
+        gap: 2px 10px;
+
+        /* justify-items: center;
+        align-items: start; */
+        place-items: start center;
+        /* 组合简写，先列后行！ */
+      }
+      main div {
+        background-color: bisque;
+        width: 80px;
+        height: 80px;
+      }
+      main div:nth-child(1) {
+        /* justify-self: center;
+        align-self: end; */
+        place-self: center end;
+      }
+      footer {
+        width: 400px;
+        border: solid red;
+        display: grid;
+        grid-template-columns: repeat(4, 50px);
+        justify-content: space-evenly;
+        /* 栅格内容区比父框架小，设置content才有用 */
+        /* space-between ;space-evenly ;space-around */
+        gap: 5px;
+      }
+      footer div {
+        background-color: bisque;
+        width: 50px;
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <div>1</div>
+      <div>2</div>
+      <div>3</div>
+      <div>4</div>
+      <div>5</div>
+      <div>6</div>
+      <div>7</div>
+      <div>8</div>
+      <div>9</div>
+    </main>
+    <footer>
+      <div>1</div>
+      <div>2</div>
+      <div>3</div>
+      <div>4</div>
+    </footer>
+  </body>
+</html>

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="app">
+      <component1></component1>
+      <component2></component2>
+      <button-counter></button-counter>
+      <!-- 在根组件里，驼峰组件得转变格式！！！ -->
+      <hello-word></hello-word>
+    </div>
+    <script src="../vue.js"></script>
+    <script>
+      Vue.component("button-counter", {
+        data: function () {
+          return {
+            count: 0,
+          };
+        },
+        // template: '<button@click="fn">点击了{{count}}次</button>',
+        // 必须有根元素
+        // 模板字符串里面可套驼峰命名的组件
+        template: `
+            <div>
+                <button@click="fn">点击了{{count}}次</button>
+                <button>123</button>
+                <HelloWord></HelloWord>
+            </div>
+        `,
+        methods: {
+          fn: function () {
+            this.count++;
+          },
+        },
+      });
+
+      // 驼峰命名
+      Vue.component("HelloWord", {
+        data: function () {
+          return {
+            msg: "hello",
+          };
+        },
+        template: "<div>{{msg}}</div>",
+      });
+
+      var Component1 = {
+        data: function () {
+          return {
+            msg1: "hi",
+          };
+        },
+        template: "<div>{{msg1}}</div>",
+      };
+      var vm = new Vue({
+        el: "#app",
+        // 局部组件
+        components: {
+          component1: Component1,
+          component2: {
+            data: function () {
+              return {
+                msg2: "ohhh",
+              };
+            },
+            template: "<div>{{msg2}}</div>",
+          },
+        },
+      });
+    </script>
+  </body>
+</html>

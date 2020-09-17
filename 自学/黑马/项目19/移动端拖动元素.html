@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      div {
+        position: absolute;
+        height: 150px;
+        width: 150px;
+        background-color: palegoldenrod;
+      }
+    </style>
+  </head>
+  <body>
+    <div></div>
+    <script>
+      var getdiv = document.querySelector("div");
+      var x0 = 0;
+      var y0 = 0;
+      getdiv.addEventListener("touchstart", function (e) {
+        x0 = e.targetTouches[0].pageX;
+        y0 = e.targetTouches[0].pageY;
+        divx = this.offsetLeft;
+        divy = this.offsetTop;
+      });
+      getdiv.addEventListener("touchmove", function (e) {
+        var x = e.targetTouches[0].pageX - x0;
+        var y = e.targetTouches[0].pageY - y0;
+        getdiv.style.left = divx + x + "px";
+        getdiv.style.top = divy + y + "px";
+        e.preventDefault(); //阻止屏幕滚动的默认行为！！
+      });
+    </script>
+  </body>
+</html>

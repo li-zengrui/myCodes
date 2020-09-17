@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            border: 0;
+        }
+        .fir{
+            list-style: none;
+            position: fixed;
+            top: 100px;
+            left: 100px;
+        }
+        .fir li{
+            position: relative;
+            float: left;
+            background-color: #666;
+            width: 150px;
+            text-align: center;
+            line-height: 30px;
+        }
+        .sec{
+            list-style: none;
+            position: absolute;
+            top: 30px;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <ul class="fir">
+        <li>
+            <a href="">微博</a>
+            <ul class="sec">
+                <li>私信</li>
+                <li>评论</li>
+                <li>@我</li>
+            </ul>
+        </li>
+        <li>
+            <a href="">微博</a>
+            <ul class="sec">
+                <li>私信</li>
+                <li>评论</li>
+                <li>@我</li>
+            </ul>
+        </li>
+        <li>
+            <a href="">微博</a>
+            <ul class="sec">
+                <li>私信</li>
+                <li>评论</li>
+                <li>@我</li>
+            </ul>
+        </li>
+    </ul>
+
+    <script>
+        var getFir = document.querySelector('.fir');
+        var getLi = getFir.children;
+        for(var i = 0; i<getLi.length; i++){
+            getLi[i].onmousemove = function(){                
+                this.children[1].style.display = 'block';                
+            }
+            getLi[i].onmouseleave = function(){                
+                this.children[1].style.display = 'none';                
+            }
+        }        
+    </script>
+</body>
+</html>

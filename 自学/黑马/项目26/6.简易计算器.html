@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <!--  1.给两个文本框双向绑定数据
+            2.给按钮绑定事件
+            3.把结果渲染
+     -->
+    <div id="app">
+      <h2>简易计算器</h2>
+      数值A: <input type="text" v-model="a" /> 数值B:
+      <input type="text" v-model="b" />
+      <button v-on:click="handle">计算</button>
+      <span>计算结果：</span><span v-text="sum"></span>
+    </div>
+    <script src="../vue.js"></script>
+    <script>
+      var vm = new Vue({
+        el: "#app",
+        data: { a: "", b: "", sum: "" },
+        methods: {
+          handle: function () {
+            this.sum = parseInt(this.a) + parseInt(this.b);
+          },
+        },
+      });
+    </script>
+  </body>
+</html>

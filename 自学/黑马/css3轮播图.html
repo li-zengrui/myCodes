@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      * {
+        padding: 0;
+        margin: 0;
+      }
+      body {
+        height: 100vh;
+        width: 100vw;
+        background-color: darkgrey;
+        display: grid;
+        grid-template: 1fr/1fr;
+      }
+      main {
+        width: 400px;
+        height: 300px;
+        justify-self: center;
+        align-self: center;
+        overflow: hidden;
+        position: relative;
+      }
+      main:hover .ul1,
+      main:hover .ul2::after {
+        animation-play-state: paused;
+      }
+      ul {
+        width: 1200px;
+        height: 900px;
+        list-style: none;
+        display: grid;
+        grid-template: 1fr / repeat(3, 1fr);
+        animation-name: hd;
+        animation-duration: 9s;
+        animation-iteration-count: infinite;
+        animation-timing-function: steps(3, end);
+      }
+      ul li {
+        width: 400px;
+        height: 300px;
+      }
+      img {
+        width: 100%;
+        height: 100%;
+      }
+      @keyframes hd {
+        to {
+          transform: translateX(-1200px);
+        }
+      }
+      @keyframes hdred {
+        to {
+          transform: translateX(120px);
+        }
+      }
+      ol {
+        list-style: none;
+        width: 90px;
+        height: 30px;
+        position: absolute;
+        left: 50%;
+        top: 95%;
+        transform: translate(-50%, -50%);
+        display: grid;
+        grid-template: 1fr / repeat(3, 1fr);
+        grid-gap: 30px;
+      }
+      ol div {
+        background-color: darkgrey;
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+        position: absolute;
+        color: white;
+      }
+      ol::after {
+        content: "";
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+        position: absolute;
+        background-color: red;
+        opacity: 0.5;
+        animation-name: hdred;
+        animation-duration: 9s;
+        animation-iteration-count: infinite;
+        animation-timing-function: steps(3, end);
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <ul>
+        <li><img src="./image/1.webp" /></li>
+        <li><img src="./image/2.webp" /></li>
+        <li><img src="./image/3.webp" /></li>
+      </ul>
+      <ol>
+        <li><div></div></li>
+        <li><div></div></li>
+        <li><div></div></li>
+      </ol>
+    </main>
+  </body>
+</html>

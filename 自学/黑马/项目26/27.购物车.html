@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      * {
+        padding: 0;
+        margin: 0;
+        list-style: none;
+      }
+      body {
+        height: 100vh;
+        width: 100vw;
+      }
+      #app {
+        height: 100%;
+        width: 100%;
+        font-size: 24px;
+      }
+      .cart {
+        height: 60%;
+        width: 40%;
+        margin: 0 auto;
+        border: paleturquoise 1px solid;
+        display: grid;
+        grid-template: 2fr 10fr 3fr / 1fr;
+      }
+      .title {
+        background-color: peachpuff;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      .content ul {
+        height: 100%;
+        width: 100%;
+        display: grid;
+        grid-template: repeat(4, 1fr) / 1fr;
+      }
+      li {
+        border-bottom: seagreen 2px solid;
+        position: relative;
+      }
+      li:nth-last-child(1) {
+        border-bottom: none;
+      }
+      .del {
+        position: absolute;
+        cursor: pointer;
+        height: 100%;
+        width: 15%;
+        color: red;
+        font-size: 1.8em;
+        right: 0;
+        top: 0;
+        text-align: center;
+      }
+      .del:hover {
+        background-color: #666;
+      }
+      .shangpin {
+        position: absolute;
+        height: 100%;
+        width: 15%;
+        top: 0;
+        left: 9vw;
+        line-height: 8vh;
+      }
+      .icon {
+        width: 20%;
+        height: 100%;
+      }
+      li input {
+        position: absolute;
+        top: 3vh;
+        right: 15vw;
+        width: 12%;
+      }
+      li .jia,
+      li .jian {
+        cursor: pointer;
+        width: 5%;
+        position: absolute;
+        top: 3vh;
+        right: 12.2vw;
+      }
+      li .jian {
+        right: 21vw;
+      }
+      .total {
+        background-color: darkgrey;
+        position: relative;
+      }
+      .total span {
+        color: red;
+        position: absolute;
+        top: 3vh;
+        left: 18vh;
+      }
+      .total button {
+        background-color: red;
+        border: none;
+        width: 10vw;
+        height: 6vh;
+        font-size: 20px;
+        position: absolute;
+        top: 3vh;
+        right: 2vw;
+        cursor: pointer;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="app">
+      <div class="cart">
+        <temhead :uname="uname"></temhead>
+        <tembody
+          :list="list"
+          @cart-del="cartDel"
+          @sub="subnum"
+          @add="addnum"
+          @changenum="change"
+        ></tembody>
+        <temfoot :list="list"></temfoot>
+      </div>
+    </div>
+
+    <script src="../vue.js"></script>
+    <script>
+      var temhead = {
+        props: ["uname"],
+        template: `
+        <div class="title">
+          <span>{{uname}}的商品</span>
+        </div>
+        `,
+      };
+      var tembody = {
+        props: ["list"],
+        template: `
+        <div class="content">
+          <ul>
+            <li :key=item.id v-for='item in list'>
+              <img class='icon' :src='item.myurl'></img>
+              <div class='shangpin'>{{item.name}}</div>
+              <button class="jian" @click='sub(item.id)'>-</button>
+              <input type="text" :value='item.num' @blur='changenum(item.id,$event)'/>
+              <button class="jia" @click='add(item.id)'>+</button>
+              <div class="del" @click='del(item.id)'>×</div>
+            </li>
+          </ul>
+        </div>
+        `,
+        methods: {
+          del: function (id) {
+            // 不推荐在子组件中操作数据，把id传递给父组件
+            this.$emit("cart-del", id);
+          },
+          sub: function (id) {
+            this.$emit("sub", id);
+          },
+          add: function (id) {
+            this.$emit("add", id);
+          },
+          changenum: function (id, event) {
+            this.$emit("changenum", {
+              id: id,
+              num: event.target.value,
+            });
+          },
+        },
+      };
+      var temfoot = {
+        props: ["list"],
+        computed: {
+          pricesum: function () {
+            var t = 0;
+            this.list.forEach((element) => {
+              t += element.num * element.price;
+            });
+            return t;
+          },
+        },
+        template: `
+        <div class="total">
+          <span>总计:{{pricesum}}</span>
+          <button>结算</button>
+        </div>
+        `,
+      };
+      var vm = new Vue({
+        el: "#app",
+        data: {
+          uname: "张三",
+          list: [
+            {
+              id: 1,
+              name: "111",
+              price: 1000,
+              num: 1,
+              myurl: "../image/1.jpg",
+            },
+            {
+              id: 2,
+              name: "222",
+              price: 1000,
+              num: 2,
+              myurl: "../image/2.jpg",
+            },
+            {
+              id: 3,
+              name: "333",
+              price: 1000,
+              num: 3,
+              myurl: "../image/3.jpg",
+            },
+            {
+              id: 4,
+              name: "444",
+              price: 1000,
+              num: 4,
+              myurl: "../image/4.jpg",
+            },
+          ],
+        },
+        components: {
+          temhead: temhead,
+          tembody: tembody,
+          temfoot: temfoot,
+        },
+        methods: {
+          cartDel: function (id) {
+            // 根据id删除数据
+            var index = this.list.findIndex((item) => {
+              return item.id == id;
+            });
+            this.list.splice(index, 1);
+          },
+          subnum: function (id) {
+            this.list.some((item) => {
+              if (item.id == id) {
+                item.num--;
+                return true;
+              }
+            });
+          },
+          addnum: function (id) {
+            this.list.some((item) => {
+              if (item.id == id) {
+                item.num++;
+                return true;
+              }
+            });
+          },
+          change: function (value) {
+            this.list.some((item) => {
+              if (item.id == value.id) {
+                item.num = value.num;
+                return true;
+              }
+            });
+          },
+        },
+      });
+    </script>
+  </body>
+</html>

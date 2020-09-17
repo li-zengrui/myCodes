@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="app">
+      <!-- .prevent阻止默认行为 -->
+      <a href="http://baidu.com" v-on:click.prevent="">百度</a>
+      <div>{{num}}</div>
+      <ul v-on:click="handle">
+        <!-- .stop阻止冒泡 -->
+        <li v-on:click.stop="num++">li</li>
+      </ul>
+      <hr />
+      <form action="">
+        <input type="text" v-model="uname" v-on:keyup.delete="clear" />用户名
+        <input
+          type="password"
+          v-model="pwd"
+          v-on:keyup.enter="handleSubmit"
+        />密码
+        <hr>
+        <input type="text" v-on:keyup.zidingyi='console'></input>
+      </form>
+    </div>
+    <script src="../vue.js"></script>
+    <script>
+      // 只是把65即a键，添加一个别名叫zidinyi而已
+      Vue.config.keyCodes.zidingyi = 65;
+      var vm = new Vue({
+        el: "#app",
+        data: {
+          num: 0,
+          uname: "",
+          pwd: "",
+        },
+        methods: {
+          handle: function () {
+            this.num++;
+          },
+          handleSubmit: function () {
+            console.log(this.uname, this.pwd);
+          },
+          clear: function () {
+            this.uname = "";
+          },
+          console: function () {
+            console.log('zidingyi');
+          },
+        },
+      });
+    </script>
+  </body>
+</html>

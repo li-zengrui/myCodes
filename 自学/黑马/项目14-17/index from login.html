@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div></div>
+    <script>
+        var div = document.querySelector('div');
+        var url = location.search.substr(1).split('=');     //?uname=1  先去掉?，再选择1
+        div.innerHTML = url[1]+'欢迎你';
+    </script>
+</body>
+</html>

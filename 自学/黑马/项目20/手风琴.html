@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="../jQuery.min.js"></script>
+    <style>
+      * {
+        padding: 0;
+        margin: 0;
+        list-style: none;
+      }
+      main {
+        margin: 40px;
+        height: 100px;
+        width: 900px;
+        border: pink 10px double;
+        background-color: pink;
+        overflow: hidden;
+      }
+      li {
+        float: left;
+        position: relative;
+        width: 100px;
+        height: 100px;
+      }
+      .big {
+        height: 100px;
+        width: 300px;
+        display: none;
+      }
+      .small {
+        height: 100px;
+        width: 100px;
+        position: absolute;
+        right: 0;
+        top: 0;
+      }
+      .first {
+        height: 180px;
+        width: 300px;
+      }
+      .first .big {
+        display: block;
+      }
+      .first .small {
+        display: none;
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <ul>
+        <li class="first">
+          <div>
+            <img src="../image/手风琴/jiangziya.jpg" class="big" />
+            <img src="../image/手风琴/j.jpg" class="small" />
+          </div>
+        </li>
+        <li>
+          <div>
+            <img src="../image/手风琴/luna.jpg" class="big" />
+            <img src="../image/手风琴/l.jpg" class="small" />
+          </div>
+        </li>
+        <li>
+          <div>
+            <img src="../image/手风琴/yadianna.jpg" class="big" />
+            <img src="../image/手风琴/y.jpg" class="small" />
+          </div>
+        </li>
+        <li>
+          <div>
+            <img src="../image/手风琴/xiahoudun.jpg" class="big" />
+            <img src="../image/手风琴/x.jpg" class="small" />
+          </div>
+        </li>
+        <li>
+          <div>
+            <img src="../image/手风琴/zhenji.jpg" class="big" />
+            <img src="../image/手风琴/z.jpg" class="small" />
+          </div>
+        </li>
+      </ul>
+    </main>
+    <script>
+      $(function () {
+        $("li").mouseover(function () {
+          $(this)
+            .stop()
+            .animate({ width: 300 }, 100)
+            .find(".big")
+            .stop()
+            .fadeIn()
+            .siblings(".small")
+            .stop()
+            .fadeOut();
+          $(this)
+            .siblings("li")
+            .stop()
+            .animate({ width: 100 }, 100)
+            .find(".big")
+            .stop()
+            .fadeOut()
+            .siblings(".small")
+            .stop()
+            .fadeIn();
+        });
+      });
+    </script>
+  </body>
+</html>

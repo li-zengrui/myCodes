@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="app">
+      <parent :per="per">
+        <!-- 2.通过slot-scope指令，绑定slot标签传出值的集合 -->
+        <button slot-scope="my" @click="change(my)">修改</button>
+      </parent>
+      <hr />
+      <parent :per="per">
+        <button slot-scope="scope">删除</button>
+      </parent>
+    </div>
+    <template id="tem">
+      <table>
+        <thead>
+          <tr>
+            <th>姓名</th>
+            <th>性别</th>
+            <th>操作</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr v-for="(item,index) in per" :key="index">
+            <td>{{item.name}}</td>
+            <td>{{item.sex}}</td>
+            <td>
+              <!-- 1.在插槽内通过自定义属性绑定要传出的值 -->
+              <slot :sname="item.name" :ssex="item.sex" :idx="index"></slot>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </template>
+    <script src="../vue.js"></script>
+    <script>
+      var vm = new Vue({
+        el: "#app",
+        data: {
+          per: [
+            {
+              name: "张三",
+              sex: "男",
+            },
+            {
+              name: "李四",
+              sex: "女",
+            },
+            {
+              name: "王五",
+              sex: "女",
+            },
+          ],
+        },
+        methods: {
+          change: function (i) {
+            console.log(i);
+          },
+        },
+        components: {
+          parent: {
+            props: ["per"],
+            data: function () {
+              return {
+                msg: "",
+              };
+            },
+            template: "#tem",
+          },
+        },
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="app">
+      <div
+        :style="{border:borderstyle,color:colorstyle,
+          fontSize:fontsizestyle}"
+      >
+        对象 样式
+      </div>
+      <hr />
+      <!-- 数组：重复的样式，后覆盖前 -->
+      <div v-bind:style="[baseStyles,overeidingStyles]">数组 样式</div>
+    </div>
+    <script src="../vue.js"></script>
+    <script>
+      var vm = new Vue({
+        el: "#app",
+        data: {
+          borderstyle: "1px red solid",
+          colorstyle: "blue",
+          fontsizestyle: "28px",
+          baseStyles: { height: "200px", width: "200px" },
+          overeidingStyles: { height: "300px", background: "blue" },
+        },
+      });
+    </script>
+  </body>
+</html>

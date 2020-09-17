@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      // 定义一个Star类
+      class Star {
+        constructor(uname, uage) {
+          this.name = uname;
+          this.age = uage;
+        }
+        say() {
+          console.log(this.name + this.age + "岁");
+        }
+        sing(song) {
+          console.log(this.name + "唱" + song);
+        }
+      }
+
+      //   实例化
+      var ldh = new Star("刘德华", 60);
+      console.log(ldh);
+      ldh.say();
+      ldh.sing("冰雨");
+
+      //   定义一个继承Star的子类
+      class Peopel extends Star {}
+      var lzr = new Peopel("李增锐", 20);
+      console.log(lzr);
+      lzr.say();
+    </script>
+  </body>
+</html>

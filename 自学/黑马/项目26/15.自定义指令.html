@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="app">
+      <input type="text" />
+      <input type="text" v-diyfocus />
+      <input type="text" v-diycolor="{color:'red'}" />
+      <input type="text" v-diyborder="{border:'none'}" />
+    </div>
+    <script src="../vue.js"></script>
+    <script>
+      // Vue.directive
+      // inserted和bind
+      // el和binding
+      Vue.directive("diyfocus", {
+        inserted: function (el) {
+          el.focus();
+        },
+      });
+      Vue.directive("diycolor", {
+        bind: function (el, binding) {
+          el.style.background = binding.value.color;
+        },
+      });
+      var vm = new Vue({
+        el: "#app",
+        data: {},
+        methods: {},
+        // 局部指令
+        directives: {
+          diyborder: {
+            bind: function (el, binding) {
+              el.style.border = binding.value.border;
+            },
+          },
+        },
+      });
+    </script>
+  </body>
+</html>

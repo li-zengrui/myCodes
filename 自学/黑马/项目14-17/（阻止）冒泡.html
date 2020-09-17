@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .father{
+            background-color: aquamarine;
+            height: 200px;
+            width: 200px;
+            padding: 150px;
+        }
+        .son{
+            background-color: red;
+            height: 200px;
+            width: 200px;
+        }
+    </style>
+</head>
+<body>
+    <div class="father">
+        <div class="son"></div>
+    </div>
+
+    <script>
+        var father = document.querySelector('.father');
+        var son = document.querySelector('.son');
+        document.addEventListener('click',function(){
+            alert(1);
+        },true)          //true表示捕获阶段，（未阻止冒泡）是1  3  2
+        father.addEventListener('click',fn)         //fn不需要()
+
+        son.addEventListener('click',function(e){
+            alert(3);
+            e.stopPropagation();        //阻止冒泡  结果是13，2不冒泡
+        })
+        function fn(){
+            alert(2);
+        }
+    </script>
+</body>
+</html>

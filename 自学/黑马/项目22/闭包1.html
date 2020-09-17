@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      * {
+        padding: 0;
+        margin: 0;
+        list-style: none;
+      }
+      body {
+        width: 100vw;
+        height: 100vh;
+        background-color: #666;
+      }
+      li {
+        margin: 15px;
+        float: left;
+      }
+      button {
+        border: 1px solid black;
+        padding: 10px 20px;
+        color: black;
+      }
+    </style>
+  </head>
+  <body>
+    <ul>
+      <li>
+        <button>1</button>
+      </li>
+      <li>
+        <button>2</button>
+      </li>
+      <li>
+        <button>3</button>
+      </li>
+      <li>
+        <button>4</button>
+      </li>
+    </ul>
+    <script>
+      var lis = document.querySelectorAll("li");
+
+      // 由于点击事件是异步任务，但for循环是同步任务
+      // 需要立即执行函数把i传进去
+
+      for (var i = 0; i < lis.length; i++) {
+        (function (i) {
+          lis[i].addEventListener("click", function () {
+            console.log(i);
+          });
+        })(i);
+      }
+    </script>
+  </body>
+</html>

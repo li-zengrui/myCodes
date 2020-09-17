@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div class="app">
+      <div>{{num}}</div>
+      <!-- v-on -->
+      <div><button v-on:click="num++">+</button></div>
+      <!-- @ -->
+      <div><button @click="num--">-</button></div>
+      <!-- 函数名调用 -->
+      <div><button v-on:click="m">*</button></div>
+      <!-- 函数名()调用 -->
+      <div><button v-on:click="p()">/</button></div>
+      <hr />
+      <!-- 函数名调用默认传递事件对象 -->
+      <div><button @click="log1">log1</button></div>
+      <!-- 函数名()调用最后一个参数为事件对象 -->
+      <div><button @click="log2(1,2,$event)">log2</button></div>
+    </div>
+    <script src="../vue.js"></script>
+    <script>
+      var vm = new Vue({
+        el: ".app",
+        data: {
+          num: 0,
+        },
+        methods: {
+          m: function () {
+            //   this指向vue实例！！！
+            this.num *= 2;
+          },
+          p: function () {
+            this.num /= 2;
+          },
+          log1: function (event) {
+            console.log(event);
+            console.log(event.target.tagName);
+            console.log(event.target.innerHTML);
+          },
+          log2: function (a, b, event) {
+            console.log(a);
+            console.log(b);
+            console.log(event);
+            console.log(event.target.tagName);
+            console.log(event.target.innerHTML);
+          },
+        },
+      });
+    </script>
+  </body>
+</html>

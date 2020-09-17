@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      * {
+        padding: 0;
+        margin: 0;
+      }
+      body {
+        height: 100vh;
+        width: 100vw;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .main {
+        height: 200px;
+        width: 200px;
+        position: relative;
+      }
+      .main div {
+        height: 50px;
+        width: 50px;
+        border-radius: 50%;
+        background-color: cornflowerblue;
+        position: absolute;
+        transition: 1s;
+        transform-origin: 100px 100px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 2em;
+        color: white;
+        transform: scale(0);
+      }
+      .main div span {
+        transition: 2s;
+      }
+      .main:hover div:nth-child(1) {
+        transform: scale(1) rotate(0deg);
+      }
+      .main:hover div:nth-child(1) span {
+        transform: rotate(0deg);
+      }
+      .main:hover div:nth-child(2) {
+        transform: scale(1) rotate(45deg);
+      }
+      .main:hover div:nth-child(2) span {
+        transform: rotate(315deg);
+      }
+      .main:hover div:nth-child(3) {
+        transform: scale(1) rotate(90deg);
+      }
+      .main:hover div:nth-child(3) span {
+        transform: rotate(630deg);
+      }
+      .main:hover div:nth-child(4) {
+        transform: scale(1) rotate(135deg);
+      }
+      .main:hover div:nth-child(4) span {
+        transform: rotate(945deg);
+      }
+      .main:hover div:nth-child(5) {
+        transform: scale(1) rotate(180deg);
+      }
+      .main:hover div:nth-child(5) span {
+        transform: rotate(1260deg);
+      }
+      .main:hover div:nth-child(6) {
+        transform: scale(1) rotate(225deg);
+      }
+      .main:hover div:nth-child(6) span {
+        transform: rotate(1575deg);
+      }
+      .main:hover div:nth-child(7) {
+        transform: scale(1) rotate(270deg);
+      }
+      .main:hover div:nth-child(7) span {
+        transform: rotate(1890deg);
+      }
+      .main:hover div:nth-child(8) {
+        transform: scale(1) rotate(315deg);
+      }
+      .main:hover div:nth-child(8) span {
+        transform: rotate(2205deg);
+      }
+      .main::before {
+        content: "旋转菜单";
+        height: 120px;
+        width: 120px;
+        border-radius: 50%;
+        background-color: cornflowerblue;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 1.3em;
+        color: white;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="main">
+      <div><span>1</span></div>
+      <div><span>2</span></div>
+      <div><span>3</span></div>
+      <div><span>4</span></div>
+      <div><span>5</span></div>
+      <div><span>6</span></div>
+      <div><span>7</span></div>
+      <div><span>8</span></div>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    手机号码：<input type="text"><button>发送</button>
+
+    <script>
+        var btn = document.querySelector('button');
+        btn.addEventListener('click',function(){
+            var time = 6;
+            var timer = setInterval(function(){
+                if(time == 0){
+                    clearInterval(timer);
+                    btn.disabled = false;
+                    btn.innerHTML = '发送';
+                    time = 6;
+                }else{
+                    btn.disabled = true;
+                    btn.innerHTML = time+'秒后可以继续发送';
+                    time--;
+                }
+            },1000)
+        })
+    </script>
+</body>
+</html>

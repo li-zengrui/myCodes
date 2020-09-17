@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      * {
+        border: 0;
+        margin: 0;
+        padding: 0;
+      }
+      .right {
+        border: black 1px solid;
+        background-color: cyan;
+        position: absolute;
+        width: 80px;
+        height: 100px;
+        right: 0;
+        top: 240px;
+      }
+      button {
+        display: none;
+        position: absolute;
+        width: 80px;
+        bottom: 10px;
+      }
+      .top {
+        background-color: aquamarine;
+        width: 70%;
+        height: 150px;
+        margin: 0 auto;
+      }
+      .menu {
+        background-color: blueviolet;
+        width: 70%;
+        height: 300px;
+        margin: 0 auto;
+      }
+      .content {
+        background-color: crimson;
+        width: 70%;
+        height: 1000px;
+        margin: 0 auto;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="right"><button>返回顶部</button></div>
+    <div class="top"></div>
+    <div class="menu"></div>
+    <div class="content"></div>
+
+    <script>
+      var topdiv = document.querySelector(".top");
+      var right = document.querySelector(".right");
+      var menu = document.querySelector(".menu");
+      var button = document.querySelector("button");
+      document.addEventListener("scroll", function () {
+        var st = window.pageYOffset;
+        if (st >= topdiv.scrollHeight) {
+          right.style.position = "fixed";
+          right.style.top = "90px";
+        } else {
+          right.style.position = "absolute";
+          right.style.top = "240px";
+        }
+        if (st >= topdiv.scrollHeight + menu.scrollHeight) {
+          button.style.display = "block";
+        } else {
+          button.style.display = "none";
+        }
+      });
+      function animate(obj, target, callback) {
+        clearInterval(obj.timer);
+        obj.timer = setInterval(function () {
+          var step = (target - window.pageYOffset) / 10;
+          step = step > 0 ? Math.ceil(step) : Math.floor(step);
+          if (window.pageYOffset == target) {
+            clearInterval(obj.timer);
+            callback && callback();
+          }
+          window.scroll(0, window.pageYOffset + step); //不用单位px
+        }, 30);
+      }
+      button.addEventListener("click", function () {
+        animate(window, 0); //滚动的是window，返回顶部0
+      });
+    </script>
+  </body>
+</html>

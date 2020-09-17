@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      // 1.命名函数,this指向window
+      function fn1() {
+        console.log("函数1" + this);
+      }
+      fn1();
+      fn1.call();
+      // 2.匿名函数,this指向window
+      var fn2 = function () {
+        console.log("函数2" + this);
+      };
+      fn2();
+      // 3.利用new Function('参数1'，'参数2','函数体');this指向window
+      var fn3 = new Function("a", "b", "console.log(a+b)");
+      fn3(1, 2);
+      // 4.对象的方法,this指向o
+      var o = {
+        fn4: function () {
+          console.log("函数4" + this);
+        },
+      };
+      o.fn4();
+      // 5.构造函数,this指向实例对象fffff,原型对象里面的this也指向实例对象fffff
+      function Fn5() {
+        console.log("函数5" + this);
+      }
+      var fffff = new Fn5();
+      // 6.立即执行函数,this指向window
+      (function () {
+        console.log("函数6" + this);
+      })();
+      // 7.绑定事件函数,this指向btn
+      // btn.onclick = function(){}
+      // 8.定时器函数,this指向window
+      // setInterval(function(){},1000)
+    </script>
+  </body>
+</html>

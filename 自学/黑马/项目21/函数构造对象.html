@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      function Star(uname, age) {
+        this.uname = uname;
+        this.age = age;
+
+        // 浪费内存：各个实例化对象都开辟了新的内存空间
+        // this.sing = function () {
+        //   console.log(1);
+        // };
+      }
+      //   一般来说公共属性放在构造函数，公共方法放在原型对象
+      //   Star.prototype.sing = function () {
+      //     console.log(1);
+      //   };
+
+      // 当这么设置公共方法时，constructor指向就不再是构造函数Star了
+      //   需要手动利用constructor属性指回构造函数
+      Star.prototype = {
+        constructor: Star,
+        sing: function () {
+          console.log(1);
+        },
+        say: function () {
+          console.log(2);
+        },
+      };
+
+      Star.sex = "男";
+      var ldh = new Star("刘德华", 18);
+      var zxy = new Star("张学友", 18);
+      //   实例成员：uname, age, sing, say，通过对象访问
+      //   静态成员：sex,通过构造函数访问
+
+      //   证明地址相同
+      console.log(ldh.sing() === zxy.sing());
+
+      console.log(Star.prototype);
+      console.log(Star.prototype.constructor);
+    </script>
+  </body>
+</html>

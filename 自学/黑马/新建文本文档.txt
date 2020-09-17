@@ -1,0 +1,16 @@
+parseInt
+parseFloat
+a&&b    a真返回b    a假返回a且不执行b
+a||b    a真返回a且不执行b    a假返回b
+indexOf
+lastIndexOf
+concat  字符串  数组
+slice(start,end)  字符串  数组
+splice(start,num,'','',...)  数组
+substr(start,length)  字符串
+join('分隔符')  数组→字符串
+split('分隔符')    字符串→数组
+
+Math.round(-1.5)，五往大了取
+Date需先实例化
++new Date() 和Date.now()    获得时间戳

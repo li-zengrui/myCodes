@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+      }
+      div {
+        background-color: #999;
+        width: 400px;
+        height: 50px;
+      }
+      ul {
+        position: relative;
+        list-style: none;
+        text-align: center;
+      }
+      ul li {
+        float: left;
+        width: 100px;
+        height: 50px;
+        line-height: 50px;
+      }
+      span {
+        position: absolute;
+        background-color: orange;
+        width: 100px;
+        height: 50.67px;
+        opacity: 0.3;
+      }
+    </style>
+  </head>
+  <body>
+    <div>
+      <span></span>
+      <ul>
+        <li>1</li>
+        <li>2</li>
+        <li>3</li>
+        <li>4</li>
+      </ul>
+    </div>
+
+    <script>
+      function animate2(obj, target) {
+        clearInterval(obj.timer);
+        obj.timer = setInterval(function () {
+          // 步长！！！
+          var step = (target - obj.offsetLeft) / 10;
+          step = step > 0 ? Math.ceil(step) : Math.floor(step);
+          if (obj.offsetLeft == target) {
+            clearInterval(obj.timer);
+          } else {
+            obj.style.left = obj.offsetLeft + step + "px";
+          }
+        }, 50);
+      }
+      var movespan = document.querySelector("span");
+      var li = document.querySelectorAll("li");
+      var current = 0;
+      for (var i = 0; i < li.length; i++) {
+        li[i].addEventListener("mouseenter", function () {
+          animate2(movespan, this.offsetLeft);
+        });
+        li[i].addEventListener("mouseout", function () {
+          animate2(movespan, current);
+        });
+        li[i].addEventListener("click", function () {
+          current = this.offsetLeft;
+        });
+      }
+    </script>
+  </body>
+</html>

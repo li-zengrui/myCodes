@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .fontColor1{
+            color:#999;
+        }
+        .fontColor2{
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <input type="text" value="邮箱/ID/手机号"  class="fontColor1">
+    </div>
+
+    <script>
+        var inp = document.querySelector('input');
+        inp.onfocus = function(){
+            if(this.value === '邮箱/ID/手机号'){
+                inp.value = '';
+                inp.className = 'fontColor2';
+            }
+            
+        }
+        inp.onblur = function(){
+            if(this.value === ''){
+                this.value = '邮箱/ID/手机号';
+                inp.className = 'fontColor1';
+            }     
+        }
+    </script>
+</body>
+</html>

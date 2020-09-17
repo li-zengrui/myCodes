@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      * {
+        padding: 0;
+        margin: 0;
+      }
+      div {
+        margin: 5px 0;
+        position: relative;
+        height: 60px;
+      }
+      input {
+        border: none;
+        outline: none;
+        width: 100%;
+        height: 100%;
+        text-align: center;
+        font-size: 16px;
+        position: absolute;
+        top: 20px;
+      }
+      div:hover:before {
+        /* attr(属性名) */
+        content: attr(data-help);
+        display: block;
+        width: 100%;
+        text-align: center;
+        position: absolute;
+        top: 0;
+      }
+      div::after {
+        position: absolute;
+        bottom: -4px;
+        content: "";
+        height: 5px;
+        width: 100%;
+        display: block;
+        background: linear-gradient(
+          to right,
+          white,
+          pink,
+          green,
+          red,
+          green,
+          pink,
+          white
+        );
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <div data-help="请输入">
+        <input type="text" />
+      </div>
+      <div data-help="请输入">
+        <input type="text" />
+      </div>
+      <div data-help="请输入">
+        <input type="text" />
+      </div>
+    </main>
+  </body>
+</html>

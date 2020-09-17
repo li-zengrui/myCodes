@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="../jQuery.min.js"></script>
+    <style>
+      * {
+        list-style: none;
+      }
+      ul {
+        background-color: bisque;
+      }
+    </style>
+  </head>
+  <body>
+    <div>
+      <textarea id="txt" cols="30" rows="8"></textarea>
+      <input type="button" value="发布" />
+      <ul></ul>
+    </div>
+    <script>
+      $(function () {
+        $("input").on("click", function () {
+          var li = $("<li></li>");
+          li.html($("#txt").val() + '<a href="javascript:;">删除</a>');
+          $("ul").prepend(li);
+          li.slideDown(function () {
+            $("#txt").val("");
+          });
+        });
+        // $("a").on("click", function () {
+        //   $(this).parent().remove();
+        // });
+        $("ul").on("click", "a", function () {
+          $(this)
+            .parent()
+            .slideUp(function () {
+              $(this).remove();
+            });
+        });
+      });
+    </script>
+  </body>
+</html>

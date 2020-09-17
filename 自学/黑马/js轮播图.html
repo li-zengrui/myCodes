@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      * {
+        padding: 0;
+        margin: 0;
+        list-style: none;
+      }
+      body {
+        height: 100vh;
+        width: 100vw;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      .focus {
+        height: 50vh;
+        width: 47.5vw;
+        overflow: hidden;
+        position: relative;
+      }
+      .arrow-r,
+      .arrow-l {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        font-size: 2em;
+        text-decoration: none;
+        background-color: white;
+        opacity: 0.4;
+        display: none;
+        z-index: 99;
+      }
+      .focus > a:hover {
+        background-color: red;
+      }
+      .arrow-r {
+        right: 0;
+      }
+      ul {
+        width: 1000%;
+        height: 100%;
+        position: absolute;
+        left: 0;
+        top: 0;
+      }
+      li {
+        float: left;
+        height: 100%;
+        width: 47.5vw;
+      }
+      img {
+        height: 100%;
+        width: 100%;
+      }
+      ol {
+        height: 1.5vw;
+        width: auto;
+        position: absolute;
+        bottom: 0;
+        left: 17.5vw;
+      }
+      ol li {
+        background-color: white;
+        border-radius: 50%;
+        height: 1.5vw;
+        width: 1.5vw;
+        margin: 0 0.5vw;
+      }
+      .current {
+        background-color: red;
+      }
+    </style>
+    <script src="./轮播图.js"></script>
+  </head>
+  <body>
+    <div class="focus">
+      <!-- 左侧按钮 -->
+      <a href="javascript:;" class="arrow-l"> &lt; </a>
+      <!-- 右侧按钮 -->
+      <a href="javascript:;" class="arrow-r">&gt;</a>
+      <!-- 滚动区域 -->
+      <ul>
+        <li>
+          <img src="./image/1.webp" />
+        </li>
+        <li>
+          <img src="./image/2.webp" />
+        </li>
+        <li>
+          <img src="./image/3.webp" />
+        </li>
+      </ul>
+      <ol class="circle"></ol>
+    </div>
+  </body>
+</html>

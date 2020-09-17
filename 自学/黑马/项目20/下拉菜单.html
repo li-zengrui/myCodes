@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="../jQuery.min.js"></script>
+    <style>
+      * {
+        padding: 0;
+        margin: 0;
+        list-style: none;
+        font-size: 20px;
+      }
+      body {
+        height: 100vh;
+        width: 100vw;
+      }
+      .father {
+        margin: 50px 100px;
+        display: flex;
+        width: 300px;
+        padding: 10px;
+      }
+      .father li {
+        text-align: center;
+        flex: 1;
+      }
+      .father li p {
+        border: #999 solid 1px;
+      }
+      .father li p:hover {
+        background-color: #999;
+      }
+      .son {
+        border: cadetblue solid 1px;
+        display: none;
+      }
+      .son li {
+        padding: 5px;
+      }
+      .son li:hover {
+        background-color: cadetblue;
+      }
+    </style>
+  </head>
+  <body>
+    <ul class="father">
+      <li>
+        <p>微博</p>
+        <ul class="son">
+          <li>私信</li>
+          <li>评论</li>
+          <li>@我</li>
+        </ul>
+      </li>
+      <li>
+        <p>微博</p>
+        <ul class="son">
+          <li>私信</li>
+          <li>评论</li>
+          <li>@我</li>
+        </ul>
+      </li>
+      <li>
+        <p>微博</p>
+        <ul class="son">
+          <li>私信</li>
+          <li>评论</li>
+          <li>@我</li>
+        </ul>
+      </li>
+      <li>
+        <p>微博</p>
+        <ul class="son">
+          <li>私信</li>
+          <li>评论</li>
+          <li>@我</li>
+        </ul>
+      </li>
+    </ul>
+    <script>
+      // $(".father li").mouseover(function () {
+      //   // $(this).children("ul").show();
+      //   $(this).children("ul").slideDown(200);
+      // });
+      // $(".father li").mouseout(function () {
+      //   // $(this).children("ul").hide();
+      //   $(this).children("ul").slideUp(200);
+      // });
+
+      // hover(鼠标经过，鼠标离开)
+      // $(".father li").hover(
+      //   function () {
+      //     $(this).children("ul").slideDown(200);
+      //   },
+      //   function () {
+      //     $(this).children("ul").slideUp(200);
+      //   }
+      // );
+
+      // hover(鼠标经过和离开)
+      $(".father li").hover(function () {
+        $(this).children("ul").slideToggle(200);
+      });
+    </script>
+  </body>
+</html>

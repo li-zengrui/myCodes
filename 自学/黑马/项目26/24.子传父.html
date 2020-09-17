@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="app">
+      <div :style="{color:color}">{{msg}}</div>
+      <child @myc="handle2"></child>
+    </div>
+    <template id="tem">
+      <button @click="handle">按钮</button>
+    </template>
+    <script src="../vue.js"></script>
+    <script>
+      var vm = new Vue({
+        el: "#app",
+        data: {
+          msg: "字",
+          color: "blue",
+        },
+        methods: {
+          handle2: function (c) {
+            this.color = c;
+          },
+        },
+        components: {
+          child: {
+            data: function () {
+              return {
+                msg: "red",
+              };
+            },
+            template: "#tem",
+            methods: {
+              handle: function () {
+                this.$emit("myc", this.msg);
+              },
+            },
+          },
+        },
+      });
+    </script>
+  </body>
+</html>

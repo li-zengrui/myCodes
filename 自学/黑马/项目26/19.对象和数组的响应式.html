@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style></style>
+  </head>
+  <body>
+    <div id="app">
+      <div>{{list}}</div>
+      <div>{{info.name}}</div>
+      <div>{{info.sex}}</div>
+      <div>{{info.age}}</div>
+      <div>{{info.new}}</div>
+    </div>
+    <script src="../vue.js"></script>
+    <script>
+      var vm = new Vue({
+        el: "#app",
+        data: {
+          list: ["a", "b", "c"],
+          info: {
+            name: "ddd",
+            sex: "eee",
+          },
+        },
+      });
+
+      //   直接设置索引，页面不显示，不具备响应式
+      //   vm.list[1] = "000";
+
+      Vue.set(vm.list, 1, "000");
+      vm.$set(vm.list, 2, "111");
+
+      //   直接设置新属性，页面显示，不具备响应式
+      //   vm.info.age = "999";
+
+      Vue.set(vm.info, "age", "999");
+      vm.$set(vm.info, "new", "888");
+    </script>
+  </body>
+</html>

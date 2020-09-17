@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+  </head>
+
+  <body>
+    <div id="app">
+      <router-link to="/user1">User1</router-link>
+      <router-link to="/user2">User2</router-link>
+      <router-link to="/reg">Register</router-link>
+      <hr />
+      <router-view></router-view>
+    </div>
+    <script src="../vue.js"></script>
+    <script src="../vue-router.js"></script>
+    <script>
+      var u1 = {
+        template: `
+        <div>
+            <h2>用户1</h2>
+            <button @click='goreg'>跳转</button>
+        </div>
+        `,
+        methods: {
+          goreg: function () {
+            this.$router.push("/reg");
+          },
+        },
+      };
+      var u2 = {
+        template: "<h2>用户2</h2>",
+      };
+      var r1 = {
+        template: `
+        <div>
+            <h2>注册</h2>
+            <button @click='goback'>返回</button>
+        </div>
+        `,
+        methods: {
+          goback: function () {
+            this.$router.go(-1);
+          },
+        },
+      };
+      var myrule = new VueRouter({
+        routes: [
+          { path: "/user1", component: u1 },
+          { path: "/user2", component: u2 },
+          { path: "/reg", component: r1 },
+        ],
+      });
+      var vm = new Vue({
+        el: "#app",
+        data: {},
+        methods: {},
+        router: myrule,
+      });
+    </script>
+  </body>
+</html>

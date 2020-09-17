@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <form id="app">
+      <input type="text" v-model="text" />
+      <hr />
+      <textarea v-model="desc"></textarea>
+      <hr />
+      <!-- 数据绑定在select上 -->
+      <select name="city" v-model="city1">
+        <option value="1">北京</option>
+        <option value="2">上海</option>
+        <option value="3">广州</option>
+        <option value="4">深圳</option>
+      </select>
+      <hr />
+      <!-- multiple表示可多选，绑定的数据为数组形式 -->
+      <select name="city" multiple v-model="city2">
+        <option value="1">北京</option>
+        <option value="2">上海</option>
+        <option value="3">广州</option>
+        <option value="4">深圳</option>
+      </select>
+      <hr />
+      <input type="radio" name="sex" v-model="sex" value="1" />男
+      <input type="radio" name="sex" v-model="sex" value="2" />女
+      <hr />
+      <!-- 绑定的数据为数组形式 -->
+      <input type="checkbox" name="hobby" v-model="hobby" value="1" />篮球
+      <input type="checkbox" name="hobby" v-model="hobby" value="2" />羽毛球
+      <input type="checkbox" name="hobby" v-model="hobby" value="3" />排球
+      <input type="checkbox" name="hobby" v-model="hobby" value="4" />足球
+      <hr />
+      <button @click.prevent="handle">提交</button>
+    </form>
+    <script src="../vue.js"></script>
+    <script>
+      var vm = new Vue({
+        el: "#app",
+        data: {
+          text: "lee",
+          desc: "hello",
+          city1: 3,
+          city2: [2, 4],
+          sex: 2,
+          hobby: [2, 4],
+        },
+        methods: {
+          handle: function () {
+            console.log(this.text);
+            console.log(this.desc);
+            console.log(this.city1);
+            console.log(this.city2.toString());
+            console.log(this.sex);
+            console.log(this.hobby.toString());
+          },
+        },
+      });
+    </script>
+  </body>
+</html>

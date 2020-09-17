@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            border: 0;
+            padding: 0;
+            margin: 0;
+        }
+        body{
+            background: url("image/1.jpg") center no-repeat;
+            background-size: cover;
+            height: 100vh;   
+        /* vh: 相对于视窗的高度, 视窗被均分为100单位的vh; vw: 相对于视窗的宽度, 视窗被均分为100单位的vw; */
+        }
+        li{
+            list-style: none;
+            float: left;
+        }
+        img{
+            width: 200px;
+            height: 100px;
+        }
+        .item{
+            width: 800px;
+            height: 100px;
+            margin: auto auto;
+            position: relative;
+            top: 40px;
+        }
+    </style>
+</head>
+<body>
+    <ul class="item">
+        <li>
+            <img src="image/1.jpg" alt="">
+        </li>
+        <li>
+            <img src="image/2.jpg" alt="">
+        </li>
+        <li>
+            <img src="image/3.jpg" alt="">
+        </li>
+        <li>
+            <img src="image/4.jpg" alt="">
+        </li>
+    </ul>
+
+    <script>
+        var abc = document.querySelector('.item').querySelectorAll('img');
+        for(var i = 0;i < abc.length; i++){
+            abc[i].onclick = function(){
+                document.body.style.backgroundImage = 'url('+this.src+')';
+            }
+            
+        }
+    </script>
+</body>
+</html>

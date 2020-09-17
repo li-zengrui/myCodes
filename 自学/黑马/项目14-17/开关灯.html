@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .white{
+            background-color: white;
+        }
+        .black{
+            background-color: black;
+        }
+    </style>
+</head>
+<body>
+
+//按钮的两种定义方法，改变按钮上的字的两种对应方法
+
+    <!-- <button>关灯</button>
+    <script>
+        var inp = document.querySelector('button');
+        var flag = 0;
+        inp.onclick = function(){
+            if(flag == 0){
+                document.body.className = 'black';
+                flag = 1;  
+                this.innerHTML = '开灯';             
+            }else{
+                document.body.className = 'white';
+                flag = 0;
+                this.innerHTML = '关灯'; 
+            }           
+        }
+    </script> -->
+
+    <input type="button" value="关灯">
+    <script>
+    var inp = document.querySelector('input');
+    var flag = 0;
+    inp.onclick = function(){        
+        if(flag == 0){
+            document.body.className = 'black';
+            flag = 1;  
+            this.value = '开灯';             
+        }else{
+            document.body.className = 'white';
+            flag = 0;
+            this.value = '关灯'; 
+        } 
+    }
+    </script>
+</body>
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            border: 0;
+            padding: 0;
+            margin: 0;
+        }
+        button{
+            width: 50px;
+            margin: 8px;
+        }
+    </style>
+</head>
+<body>
+    <button>1</button>
+    <button>2</button>
+    <button>3</button>
+    <button>4</button>
+    <button>5</button>
+    <script>
+        var btn = document.querySelectorAll('button');
+        for(var a=0;a<btn.length;a++){
+            btn[a].onclick = function(){
+                for(var b=0;b<btn.length;b++){
+                    btn[b].style.backgroundColor = '';
+                }
+                this.style.backgroundColor = 'red';
+            }
+        }
+        
+        
+    </script>
+</body>
+</html>

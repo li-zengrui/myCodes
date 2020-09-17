@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      div {
+        height: 50px;
+        width: 50px;
+        border: black 1px solid;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="app">
+      <div>{{msg}}</div>
+      <div>{{msg.split('').reverse().join('')}}</div>
+      <div>{{restring}}</div>
+      <div>{{restring}}</div>
+      <div>{{stringre()}}</div>
+      <div>{{stringre()}}</div>
+    </div>
+    <script src="../vue.js"></script>
+    <script>
+      var vm = new Vue({
+        el: "#app",
+        data: { msg: "hello" },
+        methods: {
+          stringre: function () {
+            //   方法没缓存会被打印多次
+            console.log("方法没缓存会被打印多次");
+            return this.msg.split("").reverse().join("");
+          },
+        },
+        directives: {},
+        computed: {
+          restring: function () {
+            //   计算属性有缓存，只被打印1次
+            console.log("只被打印1次");
+            return this.msg.split("").reverse().join("");
+          },
+        },
+      });
+    </script>
+  </body>
+</html>

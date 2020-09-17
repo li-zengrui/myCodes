@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            border: 0;
+            padding: 0;
+            margin: 0;
+        }
+        table{
+            border-collapse: collapse;          /* 设置单元格间距为0 */
+        }
+        tr{
+            text-align: center;
+            color: blue;
+            border-bottom: gray solid 1px;
+        }
+        thead tr{
+            background-color: skyblue;
+        }
+        td{
+            width: 80px;
+        }
+
+    </style>
+</head>
+<body>
+    <table>
+        <thead>
+            <tr>  
+                <th>代码</th>  
+                <th>名称</th>
+                <th>最新公布净值</th>  
+                <th>累计净值</th>
+                <th>前单位净值</th>  
+                <th>净值增长率</th>
+            </tr>  
+        </thead>  
+        <tbody>
+            <tr>  
+                <td>003526</td>  
+                <td>农银金穗</td>
+                <td>1.075</td>  
+                <td>1.079</td>
+                <td>1.074</td>  
+                <td class="num">+0.047%</td>  
+            </tr>  
+            <tr>  
+                <td>270047</td>  
+                <td>广发理财</td>
+                <td>0.903</td>  
+                <td>3.386</td>
+                <td>0.000</td>  
+                <td class="num">0.000%</td>  
+            </tr>  
+            <tr>  
+                <td>163417</td>  
+                <td>兴全合宜</td>
+                <td>0.860</td>  
+                <td>0.860</td>
+                <td>0.863</td>  
+                <td class="num">-0.382%</td>  
+            </tr>
+        </tbody>          
+    </teble>
+
+
+    <script>
+        var trBody = document.querySelector('tbody').querySelectorAll('tr');
+        for(var i = 0 ; i < trBody.length ; i++){
+            trBody[i].onmousemove = function(){
+                this.style.backgroundColor = 'pink';
+            }
+            trBody[i].onmouseleave = function(){
+                this.style.backgroundColor = '';
+            }
+        }
+    </script>
+    
+</body>
+</html>

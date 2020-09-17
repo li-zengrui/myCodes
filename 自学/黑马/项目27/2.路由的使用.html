@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+  </head>
+
+  <body>
+    <div id="app">
+      <!-- 1.路由链接 -->
+      <!-- a  href = " # " -->
+      <router-link to="/user">User</router-link>
+      <router-link to="/register">Register</router-link>
+
+      <!-- 2.路由填充位 -->
+      <router-view></router-view>
+    </div>
+    <script src="../vue.js"></script>
+    <script src="../vue-router.js"></script>
+    <script>
+      // 3.路由组件
+      const User = {
+        template: "<h1>User组件</h1>",
+      };
+      const Register = {
+        template: "<h1>Register组件</h1>",
+      };
+      // 4.路由规则 （path和component）
+      const router = new VueRouter({
+        routes: [
+          // 路由重定向redirect
+          { path: "/", redirect: "/user" },
+          { path: "/user", component: User },
+          { path: "/register", component: Register },
+        ],
+      });
+
+      const vm = new Vue({
+        el: "#app",
+        data: {},
+        methods: {},
+        // 可以简写成router
+        router: router,
+      });
+    </script>
+  </body>
+</html>

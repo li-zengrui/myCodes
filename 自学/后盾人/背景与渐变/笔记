@@ -1,0 +1,14 @@
+background-color
+background-image
+background-clip:content-box/padding-box/border-box
+background-repeat:no-repeat/space/repeat-x/repeat-y
+background-attachment:fixed/scroll
+background-position:center,top
+background-size:cover(可能不完全显示)/contain(可能留白)
+
+box-shadow
+
+background:linear-gradient(180deg,red,blue)
+background:radial-gradient(at 50% center,red 40%, 50% ,blue 60%)
+background:repeating-linear-gradient
+background:repeating-radial-gradient

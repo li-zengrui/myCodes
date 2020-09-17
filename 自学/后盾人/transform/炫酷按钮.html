@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      * {
+        padding: 0;
+        margin: 0;
+      }
+      body {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 100vx;
+        height: 100vh;
+        background-color: #666;
+      }
+      div {
+        width: 200px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        overflow: hidden;
+      }
+      a {
+        text-decoration: none;
+        font-size: 1.5em;
+        border: bisque solid 1px;
+        flex: 1;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 50px;
+        position: relative;
+      }
+      a::after {
+        content: "";
+        width: 0;
+        height: 100%;
+        background-color: red;
+        position: absolute;
+        z-index: -1;
+        transform: skewX(30deg);
+        transition: 0.3s;
+      }
+      a:hover::after {
+        width: 200%;
+      }
+    </style>
+  </head>
+  <body>
+    <div>
+      <a href="">炫酷按钮</a>
+    </div>
+  </body>
+</html>

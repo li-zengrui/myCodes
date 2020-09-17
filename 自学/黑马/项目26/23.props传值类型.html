@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="app">
+      <son
+        :str="pstr"
+        :int1="11111"
+        int2="22222"
+        :boo1="false"
+        boo2="false"
+        :arr="parr"
+        :obj="pobj"
+      ></son>
+    </div>
+    <script src="../vue.js"></script>
+    <script>
+      var vm = new Vue({
+        el: "#app",
+        data: {
+          pstr: "string",
+          parr: ["a1", "b2", "c3"],
+          pobj: {
+            aaa: 1,
+            bbb: 2,
+            ccc: 3,
+          },
+        },
+        components: {
+          son: {
+            //   int1是数字，int2是字符串
+            props: ["str", "int1", "int2", "boo1", "boo2", "arr", "obj"],
+            template: `
+            <div>
+                <div>{{str}}</div>
+                <div>{{int1}}</div>
+                <div>{{int2}}</div>
+                <div>{{boo1}}</div>
+                <div>{{boo2}}</div>
+                <div>{{arr}}</div>
+                <ul>
+                    <li :key=index v-for='(item,index) in obj'>{{item}}</li>
+                </ul>
+            </div>
+            `,
+          },
+        },
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .right {
+        color: green;
+      }
+      .wrong {
+        color: red;
+      }
+    </style>
+  </head>
+  <body>
+    <input type="text" id="inp" /><span>请输入用户名</span>
+    <input type="text" id="wenzi" />
+
+    <script>
+      var reg = /^[a-zA-Z0-9_-]{6,10}$/;
+
+      //   !!!  \u4e00-\u9fa5  !!!
+      var regwenzi = /^[\u4e00-\u9fa5]{2,6}$/;
+      var inp = document.querySelector("#inp");
+      var wenzi = document.querySelector("#wenzi");
+      var span = document.querySelector("span");
+      inp.addEventListener("blur", function () {
+        if (reg.test(inp.value)) {
+          span.innerHTML = "<span class='right'>成功输入用户名</span>";
+        } else {
+          span.innerHTML = "<span class='wrong'>用户名格式错误</span>";
+        }
+      });
+      wenzi.addEventListener("blur", function () {
+        if (regwenzi.test(wenzi.value)) {
+          alert("1");
+        } else {
+          alert("2");
+        }
+      });
+    </script>
+  </body>
+</html>

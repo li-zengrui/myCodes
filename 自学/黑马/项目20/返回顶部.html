@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="../jQuery.min.js"></script>
+    <style>
+      * {
+        padding: 0;
+        margin: 0;
+      }
+      body {
+        height: 100vh;
+        width: 100vw;
+        box-sizing: border-box;
+      }
+      div {
+        position: relative;
+        width: 70%;
+        height: 150%;
+        background-color: aquamarine;
+        top: 80%;
+        left: 0;
+      }
+      button {
+        height: 40px;
+        width: 100px;
+        position: fixed;
+        right: 10px;
+        top: 400px;
+        display: none;
+      }
+    </style>
+  </head>
+  <body>
+    <div></div>
+    <button>返回顶部</button>
+    <script>
+      var divtop = $("div").offset().top;
+      $(document).scroll(function () {
+        console.log($(document).scrollTop());
+        if ($(document).scrollTop() >= divtop) {
+          $("button").fadeIn();
+        } else {
+          $("button").fadeOut();
+        }
+      });
+      $("button").click(function () {
+        //   不能给document做动画
+        $("html").stop().animate({
+          scrollTop: 0,
+        });
+      });
+    </script>
+  </body>
+</html>

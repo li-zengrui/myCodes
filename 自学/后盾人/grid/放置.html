@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      * {
+        padding: 0;
+        margin: 0;
+      }
+      body {
+        width: 100vw;
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      main {
+        border: palevioletred solid;
+        display: grid;
+        width: 300px;
+        height: 300px;
+
+        /* grid-template-rows: [r1] 100px [r2] 100px [r3] 100px [r4];
+        grid-template-columns: [c1] 100px [c2] 100px [c3] 100px [c4]; */
+
+        grid-template-rows: repeat(3, [r-start] 1fr [r-end]);
+        grid-template-columns: repeat(3, [c-start] 1fr [c-end]);
+      }
+      div {
+        background-color: aquamarine;
+        margin: 10px;
+      }
+      div:nth-child(1) {
+        /* grid-row-start: 1;
+        grid-row-end: 3;
+        grid-column-start: 1;
+        grid-column-end: 3; */
+
+        /* grid-row-start: r2;
+        grid-row-end: r4;
+        grid-column-start: c2;
+        grid-column-end: c3; */
+
+        grid-row-start: r-start 1;
+        grid-row-end: r-end 2;
+        grid-column-start: c-start 1;
+        grid-column-end: c-end 2;
+      }
+
+      /* span 偏移 */
+      div:nth-child(2) {
+        /* grid-row-start: 3;
+        grid-column-start: 3;
+        grid-row-end: span 1;
+        grid-column-end: span 1; */
+        grid-row: 3/4;
+        grid-column: 1 / span 2;
+      }
+      div:nth-child(3) {
+        grid-row-end: span 3;
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <div>1</div>
+      <div>2</div>
+      <div>3</div>
+    </main>
+  </body>
+</html>

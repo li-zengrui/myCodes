@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+      }
+      a {
+        text-decoration: none;
+      }
+      body {
+        width: 100vw;
+        height: 100vh;
+      }
+      #app {
+        width: 50%;
+        height: 50%;
+        text-align: center;
+      }
+      button {
+        width: 5vw;
+        margin: 0 auto;
+      }
+      .input {
+        padding: 2vh 0;
+        background-color: blanchedalmond;
+        display: grid;
+        grid-template-columns: 1fr 2fr 1fr 2fr 1fr;
+      }
+      .nav {
+        padding: 2vh 0;
+        background-color: blanchedalmond;
+        display: grid;
+        grid-template-columns: 2fr 3fr 4fr 4fr;
+      }
+      .sum {
+        padding: 2vh 0;
+        background-color: blanchedalmond;
+      }
+      .content {
+        display: grid;
+        grid-template-columns: 2fr 3fr 4fr 4fr;
+      }
+      .content span {
+        border: 1px solid black;
+        padding: 2vh;
+        margin: 0px -1px -1px 0px;
+      }
+      .content span .sep {
+        border: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="app">
+      <h2>图书管理</h2>
+      <div class="input">
+        <span>编号:</span>
+        <input type="text" v-model="id" :disabled="flag" v-focus />
+        <span>名称:</span>
+        <input type="text" v-model="name" />
+        <button @click="handle" :disabled="subflag">提交</button>
+      </div>
+      <div class="sum"><span>图书数量：</span><span>{{total}}</span></div>
+      <div class="nav">
+        <span>编号</span>
+        <span>名称</span>
+        <span>时间</span>
+        <span>操作</span>
+      </div>
+      <div class="main">
+        <div class="content" v-for="item in content">
+          <span>{{item.id}}</span>
+          <span>{{item.name}}</span>
+          <span>{{item.time}}</span>
+          <span>
+            <a href="" @click.prevent="edit(item.id)">修改</a>
+            <span class="sep">|</span>
+            <a href="" @click.prevent="del(item.id)">删除</a>
+          </span>
+        </div>
+      </div>
+    </div>
+    <div id="app"></div>
+    <script src="../vue.js"></script>
+    <script>
+      Vue.directive("focus", {
+        inserted: function (el) {
+          el.focus();
+        },
+      });
+      var vm = new Vue({
+        el: "#app",
+        data: {
+          subflag: false,
+          flag: false,
+          id: "",
+          name: "",
+          content: [
+            {
+              id: 1,
+              name: "三国演义",
+              time: "2018-01-01",
+            },
+            {
+              id: 2,
+              name: "水浒传",
+              time: "2018-01-01",
+            },
+            {
+              id: 3,
+              name: "红楼梦",
+              time: "2018-01-01",
+            },
+            {
+              id: 4,
+              name: "西游记",
+              time: "2018-01-01",
+            },
+          ],
+        },
+        methods: {
+          handle: function () {
+            if (this.flag) {
+              this.content.some((item) => {
+                if (item.id == this.id) {
+                  item.name = this.name;
+                  return true;
+                }
+                this.flag = false;
+              });
+            } else {
+              let New = {};
+              New.id = this.id;
+              New.name = this.name;
+              New.time = this.time;
+              this.content.push(New);
+              this.id = "";
+              this.name = "";
+            }
+            this.id = "";
+            this.name = "";
+          },
+          edit: function (id) {
+            this.flag = true;
+            var newcontent = this.content.filter(function (item) {
+              return item.id == id;
+            });
+            this.id = newcontent[0].id;
+            this.name = newcontent[0].name;
+          },
+          del: function (id) {
+            // var index = this.content.findIndex(function (item) {
+            //   return item.id == id;
+            // });
+            // this.content.splice(index, 1);
+            this.content = this.content.filter(function (item) {
+              return item.id != id;
+            });
+          },
+        },
+        computed: {
+          total: function () {
+            return this.content.length;
+          },
+        },
+        watch: {
+          name: function (val) {
+            var flag = this.content.some(function (item) {
+              return item.name == val;
+            });
+            if (flag) {
+              this.subflag = true;
+            } else {
+              this.subflag = false;
+            }
+          },
+        },
+      });
+    </script>
+  </body>
+</html>

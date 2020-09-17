@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      * {
+        padding: 0;
+        margin: 0;
+      }
+      body {
+        height: 100vh;
+        width: 100vw;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: rgb(51, 83, 151);
+      }
+      main {
+        height: 400px;
+        width: 400px;
+        border: bisque solid;
+      }
+      div {
+        height: 100px;
+        width: 100px;
+        background-color: red;
+        animation-name: translate, bgc;
+        animation-duration: 4s, 2s;
+        /* infinite无限循环 */
+        animation-iteration-count: infinite, 2;
+      }
+      div::after {
+        content: "完成";
+        opacity: 0;
+        animation-name: go;
+        animation-duration: 2s;
+        animation-delay: 4s;
+        /* 定在最后一帧 */
+        animation-fill-mode: forwards;
+      }
+      @keyframes go {
+        to {
+          opacity: 0.6;
+        }
+      }
+      @keyframes translate {
+        25% {
+          transform: translateX(300px);
+        }
+        50% {
+          transform: translate(300px, 300px);
+        }
+        75% {
+          transform: translateY(300px);
+        }
+      }
+      @keyframes bgc {
+        25% {
+          background-color: orange;
+          /* transform跟前一个动画重复，先执行后面的
+            因为后动画2s，所以执行完再执行上一个动画 */
+          transform: translateX(300px);
+        }
+        50% {
+          background-color: yellow;
+        }
+        75% {
+          background-color: green;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <div></div>
+    </main>
+  </body>
+</html>

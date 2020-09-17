@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      * {
+        padding: 0;
+        margin: 0;
+      }
+      body {
+        width: 100vw;
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      div {
+        height: 200px;
+        width: 200px;
+        background-color: aquamarine;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        transition: 2s;
+        position: relative;
+      }
+      div:hover {
+        transform: rotate(360deg);
+      }
+      div::after {
+        content: "233333";
+        width: 200px;
+        height: 50px;
+        background-color: bisque;
+        position: absolute;
+        bottom: -70px;
+        border-radius: 30%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        transition: 2s;
+        transform: translate(-999px);
+      }
+      div.move::after {
+        transform: translate(0px);
+      }
+    </style>
+  </head>
+  <body>
+    <div>2333</div>
+  </body>
+  <script>
+    var getdiv = document.querySelector("div");
+    getdiv.addEventListener("transitionend", function () {
+      getdiv.className = "move";
+    });
+  </script>
+</html>

@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="../jQuery.min.js"></script>
+    <style>
+      * {
+        padding: 0;
+        margin: 0;
+      }
+      .big {
+        width: 100%;
+        height: 20vh;
+        background-color: bisque;
+        margin-bottom: 10px;
+      }
+      .all {
+        width: 4vw;
+      }
+      .o {
+        width: 8vw;
+        float: left;
+        margin: 50px 10px;
+      }
+      .small {
+        float: left;
+        height: 100%;
+        width: 20vw;
+        background: pink;
+      }
+      .price {
+        float: left;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100%;
+        width: 20vw;
+        font-size: 20px;
+      }
+      .number {
+        float: left;
+        height: 100%;
+        width: 20vw;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      .text {
+        width: 60px;
+        text-align: center;
+      }
+      .jia,
+      .jian {
+        width: 20px;
+      }
+      .sum {
+        float: left;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100%;
+        width: 20vw;
+        font-size: 20px;
+      }
+      .shanchu {
+        margin: 50px 10px;
+        border: 0;
+        outline: 0;
+        cursor: pointer;
+        font-size: 20px;
+      }
+      #del,
+      #delall {
+        text-decoration: none;
+        margin-left: 4vw;
+        border: 1px solid #666;
+        background-color: #999;
+        padding: 3px;
+        color: black;
+      }
+      #num,
+      #sum {
+        display: inline-block;
+        width: 20vw;
+        text-align: center;
+      }
+      #num strong,
+      #sum strong {
+        color: red;
+      }
+      #num {
+        margin-left: 20vw;
+      }
+      .bg-pink {
+        background-color: pink;
+      }
+    </style>
+  </head>
+  <body>
+    <input type="checkbox" class="all" />全选
+    <div class="big">
+      <input type="checkbox" class="o" />
+      <div class="small"></div>
+      <div class="price">￥5.20</div>
+      <div class="number">
+        <input type="button" value="-" class="jian" />
+        <input type="text" class="text" value="1" />
+        <input type="button" value="+" class="jia" />
+      </div>
+      <div class="sum">￥5.20</div>
+      <input type="button" value="删除" class="shanchu" />
+    </div>
+    <div class="big">
+      <input type="checkbox" class="o" />
+      <div class="small"></div>
+      <div class="price">￥13.14</div>
+      <div class="number">
+        <input type="button" value="-" class="jian" />
+        <input type="text" class="text" value="1" />
+        <input type="button" value="+" class="jia" />
+      </div>
+      <div class="sum">￥13.14</div>
+      <input type="button" value="删除" class="shanchu" />
+    </div>
+    <div class="big">
+      <input type="checkbox" class="o" />
+      <div class="small"></div>
+      <div class="price">￥52.00</div>
+      <div class="number">
+        <input type="button" value="-" class="jian" />
+        <input type="text" class="text" value="1" />
+        <input type="button" value="+" class="jia" />
+      </div>
+      <div class="sum">￥52.00</div>
+      <input type="button" value="删除" class="shanchu" />
+    </div>
+    <input type="checkbox" class="all" />全选
+    <a href="#" id="del">删除选中商品</a>
+    <a href="#" id="delall">清空购物车</a>
+    <span id="num">总数量&nbsp;&nbsp;&nbsp;<strong>1</strong></span>
+    <span id="sum">总价格&nbsp;&nbsp;<strong>5.20</strong></span>
+    <script>
+      $(function () {
+        $(".all").change(function () {
+          $(".o,.all").prop("checked", $(this).prop("checked"));
+          if ($(this).prop("checked")) {
+            $(".big").addClass("bg-pink");
+          } else {
+            $(".big").removeClass("bg-pink");
+          }
+        });
+
+        $(".o").change(function () {
+          if ($(".o:checked").length === $(".o").length) {
+            $(".all").prop("checked", true);
+          } else {
+            $(".all").prop("checked", false);
+          }
+          if ($(this).prop("checked")) {
+            $(this).parents(".big").addClass("bg-pink");
+          } else {
+            $(this).parents(".big").removeClass("bg-pink");
+          }
+        });
+
+        $(".jia").click(function () {
+          var n = $(this).siblings(".text").val();
+          $(this)
+            .siblings(".text")
+            .val(++n);
+          var price = $(this).parent().siblings(".price").html();
+          price = price.substr(1);
+          var sum = (price * n).toFixed(2);
+          $(this)
+            .parent()
+            .siblings(".sum")
+            .html("￥" + sum);
+          getNumSum();
+        });
+
+        // a.toFix(2)保留两位小数
+        // parents选择器返回指定祖先元素
+        // change事件
+
+        $(".jian").click(function () {
+          var n = $(this).siblings(".text").val();
+          if (n > 0) {
+            $(this)
+              .siblings(".text")
+              .val(--n);
+            var price = $(this).parent().siblings(".price").html();
+            price = price.substr(1);
+            var sum = (price * n).toFixed(2);
+            $(this)
+              .parent()
+              .siblings(".sum")
+              .html("￥" + sum);
+            getNumSum();
+          }
+        });
+
+        $(".text").change(function () {
+          var a = $(this).val();
+          var price = $(this).parent().siblings(".price").html();
+          price = price.substr(1);
+          var sum = (a * price).toFixed(2);
+          $(this)
+            .parent()
+            .siblings(".sum")
+            .html("￥" + sum);
+          getNumSum();
+        });
+
+        $(".shanchu").click(function () {
+          $(this).parents(".big").remove();
+          getNumSum();
+        });
+        getNumSum();
+        function getNumSum() {
+          var num = 0;
+          var sum = 0;
+          $(".text").each(function (index, ele) {
+            num += parseInt($(ele).val());
+          });
+          $("#num strong").text(num);
+          $(".sum").each(function (index, ele) {
+            sum += parseFloat($(ele).text().substr(1));
+          });
+          $("#sum strong").text(sum.toFixed(2));
+        }
+
+        $("#del").click(function () {
+          $(".o:checked").parents(".big").remove();
+          getNumSum();
+        });
+        $("#delall").click(function () {
+          $(".big").remove();
+          getNumSum();
+        });
+      });
+    </script>
+  </body>
+</html>

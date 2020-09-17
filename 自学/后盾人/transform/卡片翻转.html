@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      * {
+        padding: 0;
+        margin: 0;
+      }
+      body {
+        width: 100vw;
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      main {
+        height: 300px;
+        width: 300px;
+        border: springgreen solid;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: relative;
+        /* !!!!!!! */
+        transform-style: preserve-3d;
+        transition: 2s;
+      }
+      div {
+        height: 200px;
+        width: 200px;
+        position: absolute;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        /* backface-visibility: hidden; */
+        transition: 2s;
+      }
+      .z {
+        background-color: tomato;
+      }
+      .f {
+        background-color: violet;
+        transform: rotateY(180deg);
+      }
+      /* main:hover .z {
+        transform: rotateY(180deg);
+      }
+      main:hover .f {
+        transform: rotateY(0deg);
+      } */
+      main:hover {
+        transform: rotateY(180deg);
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <div class="z">正</div>
+      <div class="f">反</div>
+    </main>
+  </body>
+</html>

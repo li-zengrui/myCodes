@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .active {
+        width: 100px;
+        height: 100px;
+        border: 1px silver solid;
+      }
+      .bg {
+        background-color: #888;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="app">
+      <!-- {}和[]两种用法 -->
+      <!-- { 类名:布尔值,类名:布尔值 }  控制布尔值  -->
+      <div :class="{active:isActive,bg:isBg}">样式</div>
+      <hr />
+      <!-- [ 类别名,类别名 ]  控制类别名  -->
+      <div :class="[bgClass]">样式</div>
+      <button @click="handle">切换</button>
+    </div>
+    <script src="../vue.js"></script>
+    <script>
+      var vm = new Vue({
+        el: "#app",
+        data: {
+          isActive: true,
+          isBg: false,
+          bgClass: "bg",
+        },
+        methods: {
+          handle: function () {
+            this.isActive = !this.isActive;
+            this.isBg = !this.isBg;
+            this.bgClass = "active";
+          },
+        },
+      });
+    </script>
+  </body>
+</html>

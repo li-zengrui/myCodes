@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      class Father {
+        constructor(x, y) {
+          this.x = x;
+          this.y = y;
+        }
+        sum() {
+          console.log(this.x + this.y);
+        }
+        say() {
+          return "我是爸爸";
+        }
+      }
+      class Son extends Father {
+        constructor(x, y) {
+          // 此this不是父类中的this，行不通
+          //   this.x = x;
+          //   this.y = y;
+
+          //   调用父类的构造函数！！
+          super(x, y);
+
+          // 实例化时便调用say函数
+          this.say();
+        }
+        say() {
+          // 调用父类中的普通函数！！
+          console.log(super.say() + "的儿子");
+        }
+      }
+      var son = new Son(1, 2);
+      son.sum();
+      //   son.say();
+    </script>
+  </body>
+</html>

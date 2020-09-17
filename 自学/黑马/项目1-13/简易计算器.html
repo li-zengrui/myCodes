@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        var num;
+        var panduan = true;
+        while(panduan){
+            num = prompt('欢迎使用网易计算器：'+'\n'+'1.加法运算'+'\n'+'2.减法运算'+'\n'+'3.乘法运算'+'\n'+'4.除法运算'+'\n'+'5.退出'+'\n'+'请输入您的选项')
+            if(parseFloat(num)==1){
+                alert(jiafa());
+            }else if(parseFloat(num)==2){
+                alert(jianfa());
+            }else if(parseFloat(num)==3){
+                alert(chengfa());
+            }else if(parseFloat(num)==4){
+                alert(chufa());
+            }else if(parseFloat(num)==5){
+                alert('正在退出...');
+                panduan = false;
+            }
+        }
+        function jiafa(){
+            var a = prompt('请输入第一个数：');
+            var b = prompt('请输入第二个数：');
+            return parseFloat(a) + parseFloat(b);
+        }
+        function jianfa(){
+            var a = prompt('请输入第一个数：');
+            var b = prompt('请输入第二个数：');
+            return a - b;
+        }
+        function chengfa(){
+            var a = prompt('请输入第一个数：');
+            var b = prompt('请输入第二个数：');
+            return a * b;
+        }
+        function chufa(){
+            var a = prompt('请输入第一个数：');
+            var b = prompt('请输入第二个数：');
+            return a / b;
+        }
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

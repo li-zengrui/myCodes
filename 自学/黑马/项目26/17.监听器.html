@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style></style>
+  </head>
+  <body>
+    <div id="app">
+      <form>
+        <span>用户名</span>
+        <input type="text" v-model.lazy="msg" />
+        <span>{{tip}}</span>
+        <hr />
+        <input type="text" v-model="first" />
+        <input type="text" v-model="last" />
+        <span>{{fullname}}</span>
+      </form>
+    </div>
+    <script src="../vue.js"></script>
+    <script>
+      var vm = new Vue({
+        el: "#app",
+        data: {
+          msg: "",
+          tip: "",
+          first: "",
+          last: "",
+          fullname: "",
+        },
+        methods: {
+          check: function (uname) {
+            var that = this;
+            setTimeout(function () {
+              if (uname == "admin") {
+                that.tip = "用户名重复";
+              } else {
+                that.tip = "用户名可以使用";
+              }
+            }, 2000);
+          },
+        },
+        relatives: {},
+        computed: {},
+        watch: {
+          msg: function (val) {
+            this.check(val);
+            this.tip = "正在验证......";
+          },
+          first: function (val) {
+            this.fullname = val + " " + this.last;
+          },
+          last: function (val) {
+            this.fullname = this.first + " " + val;
+          },
+        },
+        filters: {},
+      });
+    </script>
+  </body>
+</html>

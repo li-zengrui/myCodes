@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            border: 0;
+        }
+        ul{
+            list-style: none;
+            position: relative;
+        }
+        li{
+            float: left;
+            padding: 12px;
+        }
+        .lileave{
+            background-color: #666;
+        }
+        .lihover{
+            background-color:red;
+            color: white;
+        }
+        .bigcontent{
+            position: absolute;
+            top: 44.67px;
+            background-color: #999;
+            width: 506.5px;
+        }
+        .content{
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <ul>
+            <li>商品介绍</li>
+            <li>规格与包装</li>
+            <li>售后保障</li>
+            <li>商品评价(50000)</li>
+            <li>手机社区</li>
+        </ul>
+    </div>
+    <div class="bigcontent">
+        <div class="content">
+            商品介绍内容介绍
+        </div>
+        <div class="content">
+            规格与包装内容介绍
+        </div>
+        <div class="content">
+            售后保障内容介绍
+        </div>
+        <div class="content">
+            商品评价内容介绍
+        </div>
+        <div class="content">
+            手机社区内容介绍
+        </div>
+    </div>
+
+    <script>
+        var li = document.querySelectorAll('li');
+        var content = document.querySelectorAll('.content');
+        for(var i = 0;i < li.length;i++){
+            li[i].setAttribute('index',i);
+            li[i].className = 'lileave';
+            li[i].onmousemove = function(){
+                this.className = 'lihover';
+                var index = this.getAttribute('index');
+                for(var j = 0 ; j <content.length ; j++){
+                    content[j].style.display = 'none';
+                }
+                content[index].style.display = 'block';
+            }
+            li[i].onmouseout = function(){
+                this.className = 'lileave';
+                for(var i = 0; i < content.length;i++)
+                    content[i].style.display = 'none';
+            }
+        }
+    </script>
+</body>
+</html>

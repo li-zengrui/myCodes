@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <link href="../image/play.png" rel="shortcut icon" />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      * {
+        padding: 0;
+        margin: 0;
+      }
+      body {
+        height: 100vh;
+        width: 100vw;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      #app {
+        width: 60%;
+        height: 80%;
+        margin: auto 0;
+        display: grid;
+        grid-template: 1fr 6fr 1fr/1fr;
+      }
+      header {
+        background-color: #11a2de;
+        position: relative;
+        display: flex;
+        align-items: center;
+      }
+      header b {
+        color: #f5ffff;
+        font-size: 28px;
+        margin-left: 5vw;
+      }
+      header svg {
+        position: absolute;
+        right: 6vw;
+      }
+      header input {
+        position: absolute;
+        height: 35%;
+        width: 50%;
+        right: 5vw;
+        border-radius: 12px;
+        outline: none;
+        font-size: 18px;
+      }
+      main {
+        display: grid;
+        grid-template: 1fr/2fr 5fr 2fr;
+        background-color: #c6c7b9;
+        overflow: scroll;
+        width: 100%;
+        height: 100%;
+      }
+      .song {
+        width: 100%;
+        height: 50vh;
+      }
+      .song_list {
+        width: 100%;
+        height: 100%;
+        list-style: none;
+      }
+      .song_list li {
+        font-size: 17px;
+        color: #333;
+        width: 100%;
+        display: flex;
+        align-items: center;
+        padding-left: 10px;
+        position: relative;
+      }
+      .song_list li:nth-child(odd) {
+        background-color: rgba(240, 240, 240, 0.3);
+      }
+      .song_list li a {
+        display: block;
+        width: 20px;
+        height: 20px;
+        background-image: url("../image/play.png");
+        background-size: 100%;
+        background-repeat: no-repeat;
+        margin-right: 5px;
+      }
+      .song_list li span {
+        position: absolute;
+        width: 23px;
+        height: 17px;
+        right: 8px;
+      }
+      .song_list li span i {
+        display: block;
+        width: 100%;
+        height: 100%;
+        cursor: pointer;
+        background: url("../image/table.png") left -48px no-repeat;
+      }
+      .cover {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+      }
+      .play_bar {
+        position: fixed;
+        top: 22vh;
+        z-index: 99;
+        transform: rotateZ(-36deg);
+        transform-origin: 12px 12px;
+      }
+      .goBar {
+        transform: rotateZ(-5deg);
+      }
+      .disc {
+        position: fixed;
+        top: 33vh;
+      }
+      .musicCover {
+        border: none;
+        position: fixed;
+        top: 42.1vh;
+        display: block;
+        width: 142px;
+        height: 142px;
+        border-radius: 50%;
+      }
+      .comment {
+        width: 100%;
+        height: 100%;
+      }
+      .comment_list {
+        width: 100%;
+        height: 90%;
+      }
+      .comment_list dl {
+        display: grid;
+        grid-template: 1fr 3fr/1fr 3fr;
+        border-bottom: 1px #777 solid;
+        margin-top: 2vh;
+      }
+      .comment_list dl dt {
+        display: flex;
+        justify-content: center;
+        align-items: flex-start;
+      }
+      .comment_list dl dd:nth-of-type(1) {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      .comment_list dl dd:nth-of-type(2) {
+        grid-row-start: 2;
+        grid-row-end: 3;
+        grid-column-start: 1;
+        grid-column-end: 3;
+        display: flex;
+        align-items: center;
+      }
+      .comment_list dl dt img {
+        width: 100%;
+        border-radius: 50%;
+      }
+      .name {
+        font-weight: bold;
+        font-size: 24px;
+      }
+      .detail {
+        font-size: 18px;
+      }
+      footer {
+        background-color: #f0f2f4;
+      }
+      footer .myaudio {
+        width: 100%;
+        outline: none;
+      }
+      @keyframes Rotate {
+        from {
+          transform: rotateZ(0);
+        }
+        to {
+          transform: rotateZ(360deg);
+        }
+      }
+      .autoRotate {
+        animation-name: Rotate;
+        animation-iteration-count: infinite;
+        animation-timing-function: linear;
+        animation-duration: 5s;
+        animation-play-state: paused;
+      }
+      .goRotate {
+        animation-play-state: running;
+      }
+      .video_con video {
+        position: fixed;
+        width: 800px;
+        height: 546px;
+        left: 50%;
+        top: 50%;
+        margin-top: -273px;
+        transform: translateX(-50%);
+        z-index: 990;
+      }
+      .video_con .mask {
+        position: fixed;
+        width: 100%;
+        height: 100%;
+        left: 0;
+        top: 0;
+        z-index: 980;
+        background-color: rgba(0, 0, 0, 0.8);
+      }
+    </style>
+  </head>
+  <body>
+    <div id="app">
+      <header>
+        <b>悦听</b>
+        <input type="text" v-model="query" @keyup.enter="searchMusic" />
+        <svg
+          t="1599798766344"
+          class="icon"
+          viewBox="0 0 1024 1024"
+          version="1.1"
+          xmlns="http://www.w3.org/2000/svg"
+          p-id="1364"
+          width="16"
+          height="16"
+        >
+          <path
+            d="M882.6369 904.308991 730.351542 708.192358c7.884574-6.656607 15.529695-13.647835 22.890336-21.0095 33.348526-33.350572 59.533908-72.194252 77.8296-115.453499 18.948561-44.803415 28.555359-92.378967 28.555359-141.40659 0-49.021483-9.607822-96.593965-28.556383-141.393287-18.295692-43.256176-44.481074-82.09781-77.828576-115.446335S681.053766 113.948215 637.797589 95.652524C592.99929 76.703963 545.429879 67.096141 496.409418 67.096141c-49.021483 0-96.593965 9.607822-141.394311 28.556383-43.256176 18.295692-82.098833 44.482097-115.446335 77.830623-33.348526 33.347502-59.533908 72.189136-77.830623 115.446335-18.948561 44.800345-28.556383 92.371804-28.556383 141.393287 0 49.027623 9.607822 96.603175 28.556383 141.40659 18.295692 43.259246 44.481074 82.10395 77.8296 115.453499 33.347502 33.349549 72.189136 59.536978 115.446335 77.833693 44.800345 18.948561 92.371804 28.556383 141.394311 28.556383 49.019437 0 96.590895-9.608845 141.389194-28.557406 12.920264-5.465478 25.436322-11.649318 37.541011-18.502399l154.415882 198.860117c11.339256 14.603603 31.987528 17.545608 46.119387 6.572696l1.705851-1.325182C891.713626 939.6458 893.977179 918.912593 882.6369 904.308991zM496.409418 732.173538c-166.428473 0-301.82928-135.410016-301.82928-301.851792 0-166.428473 135.399783-301.828256 301.82928-301.828256 166.423357 0 301.818023 135.399783 301.818023 301.828256C798.228465 596.763522 662.832775 732.173538 496.409418 732.173538z"
+            p-id="1365"
+          ></path>
+        </svg>
+      </header>
+      <main>
+        <section class="songs">
+          <ul class="song_list">
+            <li v-for="(item,id) in musicList" :key="id">
+              <a href="javascript:;" @click="playMusic(item.id)"></a>
+              <b>{{item.name}}</b>
+              <span v-if="item.mvid!=0" @click="playMv(item.mvid)"
+                ><i></i
+              ></span>
+            </li>
+          </ul>
+        </section>
+        <section class="cover">
+          <img
+            src="../image/player_bar.png"
+            class="play_bar"
+            :class="{goBar:isPlaying}"
+          />
+          <img src="../image/disc.png" class="disc" />
+          <img
+            :src="musicCover"
+            class="musicCover autoRotate"
+            :class="{goRotate:isPlaying}"
+          />
+        </section>
+        <section class="comments">
+          <h2>热门留言</h2>
+          <div class="comment_list">
+            <dl v-for="(item,id) in hotComments" :key="id">
+              <dt><img :src="item.user.avatarUrl" /></dt>
+              <dd class="name">{{item.user.nickname}}</dd>
+              <dd class="detail">{{item.content}}</dd>
+            </dl>
+          </div>
+        </section>
+      </main>
+      <footer>
+        <audio
+          controls
+          autoplay
+          loop
+          class="myaudio"
+          :src="this.musicUrl"
+          @play="play"
+          @pause="pause"
+        ></audio>
+      </footer>
+      <div class="video_con" v-show="isShow">
+        <video controls="controls" :src="mvUrl" autoplay></video>
+        <div class="mask" @click="hide"></div>
+      </div>
+    </div>
+  </body>
+  <script src="../vue.js"></script>
+  <script src="../axios.js"></script>
+  <script>
+    var vm = new Vue({
+      el: "#app",
+      data: {
+        query: "",
+        musicList: [],
+        musicUrl: "",
+        musicCover: "../image/cover.png",
+        hotComments: [],
+        isPlaying: false,
+        isShow: false,
+        mvUrl: "",
+      },
+      methods: {
+        searchMusic: function () {
+          axios.get("https://autumnfish.cn/search?keywords=" + this.query).then(
+            (response) => {
+              this.musicList = response.data.result.songs;
+            },
+            (err) => {
+              console.log("出错");
+            }
+          );
+        },
+        playMusic: function (musicId) {
+          axios.get("https://autumnfish.cn/song/url?id=" + musicId).then(
+            (response) => {
+              this.musicUrl = response.data.data[0].url;
+            },
+            (err) => {
+              console.log("出错");
+            }
+          );
+          axios.get("https://autumnfish.cn/song/detail?ids=" + musicId).then(
+            (response) => {
+              this.musicCover = response.data.songs[0].al.picUrl;
+            },
+            (err) => {
+              console.log("出错");
+            }
+          );
+          axios
+            .get("https://autumnfish.cn/comment/hot?type=0&id=" + musicId)
+            .then(
+              (response) => {
+                this.hotComments = response.data.hotComments;
+              },
+              (err) => {
+                console.log("出错了");
+              }
+            );
+        },
+        play: function () {
+          this.isPlaying = true;
+        },
+        pause: function () {
+          this.isPlaying = false;
+        },
+        playMv: function (mvid) {
+          axios.get("https://autumnfish.cn/mv/url?id=" + mvid).then(
+            (response) => {
+              this.mvUrl = response.data.data.url;
+              this.isShow = true;
+            },
+            (err) => {
+              console.log("出错了");
+            }
+          );
+        },
+        hide: function () {
+          this.isShow = false;
+          this.mvUrl = "";
+        },
+      },
+    });
+  </script>
+</html>

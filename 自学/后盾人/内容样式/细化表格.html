@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      table {
+        border-collapse: collapse;
+        border: none;
+      }
+      td {
+        border: 0;
+        border-right: solid 1px #ddd;
+        border-bottom: solid 1px #ddd;
+        padding: 8px;
+      }
+      tr td:last-child {
+        border-right: none;
+      }
+      tfoot tr td {
+        border-bottom: none;
+      }
+    </style>
+  </head>
+  <body>
+    <table border="1">
+      <thead>
+        <caption>
+          000
+        </caption>
+        <tr>
+          <td>1</td>
+          <td>2</td>
+          <td>3</td>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>11</td>
+          <td>22</td>
+          <td>33</td>
+        </tr>
+      </tbody>
+      <tfoot>
+        <tr>
+          <td>111</td>
+          <td>222</td>
+          <td>333</td>
+        </tr>
+      </tfoot>
+    </table>
+  </body>
+</html>
